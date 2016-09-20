@@ -11,31 +11,40 @@ package pca;
  */
 public class Matrice {
     //Attributs
-    private int Ligne;
-    private int Colonnes;
-    private double Matr[][]=new double [Ligne][Colonnes];
+    private int lignes;
+    private int colonnes;
+    private double[][] matr=new double [lignes][colonnes];
     //Methodes
+  
     public Matrice(int Ligne, int Colonnes){
-        this.Ligne=Ligne;
-        this.Colonnes=Colonnes;
+        this.lignes=Ligne;
+        this.colonnes=Colonnes;
+    }
+    
+    public void aff_matrice(){
+        for(int i = 0; i < this.colonnes; i++){
+            for( int j = 0; j < this.lignes; j++){
+                System.out.println("ligne " + j +  " colonne " + i + " : " + this.matr[j][i]);
+            }
+        }
     }
     public void setLigne(int ligne){
-        Ligne=ligne;
+        this.lignes=ligne;
     }
     public void setColonnes(int colonnes){
-        Colonnes = colonnes;
+        this.colonnes = colonnes;
     }
     public void setElement(int ligne, int colonne, double element){
-        Matr[ligne][colonne]=element;
+        matr[ligne][colonne]=element;
     }
     public int getLigne(){
-        return Ligne;
+        return lignes;
     }
     public int getColonnes(){
-        return Colonnes;
+        return colonnes;
     }
     public double getElement(int ligne, int colonne){
-        return Matr[ligne][colonne];
+        return matr[ligne][colonne];
     }
     
 }
