@@ -9,14 +9,16 @@ package pca;
  *
  * @author rayanmehdi1
  */
-public class PCA {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Matrice m = new Matrice(3,3);
+public class Test {
+    
+    Matrice m = new Matrice(3,3);
+    Vecteur v = new Vecteur(3);
+    
+    public Test(){
+        
+        for( int i = 0; i < m.getColonnes(); i++ ){
+               
+        }
     }
     
 }

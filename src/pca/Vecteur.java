@@ -14,7 +14,17 @@ public class Vecteur {
     private int taille;
     private double vect[] = new double [taille];
     //Methodes
+    
+    public void aff_vecteur(){
+       for( int i = 0; i < taille; i++){
+           System.out.println(" taille " + i + " " + vect[i]);
+       }
+    }
 
+    public double getElement(int i){
+        return vect[i];
+    }
+    
     public Vecteur(int taille) {
         this.taille = taille;
     }
@@ -25,6 +35,10 @@ public class Vecteur {
 
     public void setVect(double[] vect) {
         this.vect = vect;
+    }
+    
+    public void setElement(int i, double d){
+        this.vect[i] = d;
     }
 
     public int getTaille() {
