@@ -13,7 +13,7 @@ public class Test {
     
     Matrice m = new Matrice(3,3);
     Vecteur v = new Vecteur(3);
-    
+    Image imag = new Image("test.jpg");
     public Test(){
         
         
@@ -26,9 +26,10 @@ public class Test {
         for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
         }
+        imag.lectureImage();
+        //m.aff_matrice();
+        //v.aff_vecteur();
         
-        m.aff_matrice();
-        v.aff_vecteur();
     }
     
 }
