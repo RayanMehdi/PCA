@@ -17,11 +17,21 @@ public class Test {
     public Test(){
         
         
-        for( int i = 0; i < m.getColonnes(); i++ ){
+        /*for( int i = 0; i < m.getColonnes(); i++ ){
                for( int j = 0; j < m.getLigne(); j++ ){
                    m.setElement(j, i, 2);
                }
-        }
+        }*/
+        
+        m.setElement(0, 0, 1);
+        m.setElement(1, 0, 4);
+        m.setElement(0, 1, 4);
+        m.setElement(2, 0, 5);
+        m.setElement(0, 2, 5);
+        m.setElement(1, 2, 6);
+        m.setElement(2, 1, 6);
+        m.setElement(1, 1, 2);
+        m.setElement(2, 2, 3);
         
         for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
