@@ -41,4 +41,12 @@ public class Test {
         v.aff_vecteur();
     }
     
+    public Vecteur getVect(){
+        return v;
+    }
+    
+    public Matrice getMatr(){
+        return m;
+    }
+    
 }
