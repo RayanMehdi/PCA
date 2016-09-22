@@ -19,7 +19,7 @@ public class CalculMatriciel {
     
     //initialise m et v ainsi q'une variable arret
     
-    public void initial(Matrice m, Vecteur v, double arret){
+    public CalculMatriciel(Matrice m, Vecteur v, double arret){
         this.m = m;
         this.v = v;
         this.arret = arret;
@@ -38,14 +38,18 @@ public class CalculMatriciel {
         Vecteur v2 = v;
         double valeur_propre = 1, valeur_propre_2 = 0;
         while( Math.abs(valeur_propre - valeur_propre_2)> arret){
-           v2 = multiplicate();
+           valeur_propre = valeur_propre_2;
+           v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
+           v = multiplicate(v2);// rpz le vecteur x dans l'algo
+           valeur_propre_2 = transposition(v2,v);
            v2.aff_vecteur();
-           v2 = norme_vecteur(v2);
+            System.out.println(valeur_propre_2);
+           
         }
     }
     
-    public Vecteur multiplicate(){
-        Vecteur test = new Vecteur(this.v.getTaille());
+    public Vecteur multiplicate(Vecteur v){
+        Vecteur test = new Vecteur(v.getTaille());
         double value = 0;
         for( int i = 0; i < test.getTaille(); i++){
                 for( int k = 0; k < this.m.getColonnes(); k++){
@@ -69,5 +73,13 @@ public class CalculMatriciel {
             vNorme.setElement(i, v.getElement(i)/norme);
         }
         return vNorme;
+    }
+    
+    public double transposition(Vecteur v, Vecteur v2){
+        double vPropre = 0;
+        for(int i = 0; i < v.getTaille() ; i++){
+            vPropre += v.getElement(i)*v2.getElement(i);
+        }
+        return vPropre;
     }
 }
