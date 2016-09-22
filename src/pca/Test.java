@@ -17,7 +17,9 @@ public class Test {
     public Test(){
         
         for( int i = 0; i < m.getColonnes(); i++ ){
-               
+               for( int j = 0; j < m.getLigne(); j++ ){
+                   
+               }
         }
     }
     
