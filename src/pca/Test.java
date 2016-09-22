@@ -11,7 +11,7 @@ package pca;
  */
 public class Test {
     
-    Matrice m = new Matrice(3,3);
+    Matrice m = new Matrice(10,10);
     Vecteur v = new Vecteur(3);
     Image imag = new Image("test.jpg");
     public Test(){
@@ -22,7 +22,7 @@ public class Test {
                    m.setElement(j, i, 2);
                }
         }*/
-        
+        /*
         m.setElement(0, 0, 1);
         m.setElement(1, 0, 4);
         m.setElement(0, 1, 4);
@@ -32,12 +32,14 @@ public class Test {
         m.setElement(2, 1, 6);
         m.setElement(1, 1, 2);
         m.setElement(2, 2, 3);
-        
+        */
         for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
         }
-        imag.lectureImage();
-        //m.aff_matrice();
+        //imag.();
+        
+        m=imag.MatriceNoirBlanc();
+        m.aff_matrice();
         //v.aff_vecteur();
         
     }

@@ -18,12 +18,43 @@ import javax.imageio.ImageIO;
  */
 public class Image {
     private String nomFichier;
-
+    private Matrice matrix;
     
     public Image(String nom){
         this.nomFichier=nom;
     }
     
+    public Matrice MatriceNoirBlanc(){
+        try {
+        BufferedImage image = ImageIO.read(new File(this.nomFichier));
+         
+        int largeurImage = image.getWidth();
+        int hauteurImage = image.getHeight();
+         
+        matrix=new Matrice(largeurImage,hauteurImage);
+        
+        
+        Color couleur;
+        for(int colonne = 0; colonne < largeurImage; colonne++){
+            for(int ligne = 0; ligne < hauteurImage; ligne++){
+                couleur = new Color(image.getRGB(colonne, ligne), false);
+                // Traitement ici
+                //System.out.print(image.getRGB(colonne, ligne)+" | ");
+                //System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
+                matrix.setElement(ligne, colonne, couleur.getRed());
+                
+            }
+            //System.out.println("");
+        }
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return matrix;
+}
     
     public void lectureImage() {
     try {
@@ -32,13 +63,17 @@ public class Image {
         int largeurImage = image.getWidth();
         int hauteurImage = image.getHeight();
          
+        
+        
+        
         Color couleur;
         for(int colonne = 0; colonne < largeurImage; colonne++){
             for(int ligne = 0; ligne < hauteurImage; ligne++){
                 couleur = new Color(image.getRGB(colonne, ligne), false);
                 // Traitement ici
+                //System.out.print(image.getRGB(colonne, ligne)+" | ");
+                //System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
                 
-                System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
             }
             System.out.println("");
         }
