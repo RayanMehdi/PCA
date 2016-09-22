@@ -18,7 +18,7 @@ public class Test {
         
         for( int i = 0; i < m.getColonnes(); i++ ){
                for( int j = 0; j < m.getLigne(); j++ ){
-                   
+                   m.setElement(j, i, 2);
                }
         }
     }
