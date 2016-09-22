@@ -17,7 +17,7 @@ public class Vecteur {
     
     public void aff_vecteur(){
        for( int i = 0; i < taille; i++){
-           System.out.println(" taille " + i + " " + vect[i]);
+           System.out.println("["+i+"] "+vect[i]);
        }
     }
 
