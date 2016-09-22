@@ -38,9 +38,13 @@ public class CalculMatriciel {
         Vecteur v2 = v;
         double valeur_propre = 1, valeur_propre_2 = 0;
         while( Math.abs(valeur_propre - valeur_propre_2)> arret){
-           v2 = multiplicate();
-           v2.aff_vecteur();
+           valeur_propre = valeur_propre_2;
            v2 = norme_vecteur(v2);
+           v2 = multiplicate();
+           valeur_propre_2 = transposition(v2,v);
+           v2.aff_vecteur();
+            System.out.println(valeur_propre_2);
+           
         }
     }
     
@@ -69,5 +73,13 @@ public class CalculMatriciel {
             vNorme.setElement(i, v.getElement(i)/norme);
         }
         return vNorme;
+    }
+    
+    public double transposition(Vecteur v, Vecteur v2){
+        double vPropre = 0;
+        for(int i = 0; i < v.getTaille() ; i++){
+            vPropre += v.getElement(i)*v2.getElement(i);
+        }
+        return vPropre;
     }
 }
