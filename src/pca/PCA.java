@@ -16,7 +16,8 @@ public class PCA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Matrice m = new Matrice(3,3);
+        Test t = new Test();
+        
     }
     
 }

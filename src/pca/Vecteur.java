@@ -12,7 +12,7 @@ package pca;
 public class Vecteur {
     //Attributs
     private int taille;
-    private double vect[] = new double [taille];
+    private double vect[];
     //Methodes
     
     public void aff_vecteur(){
@@ -27,6 +27,7 @@ public class Vecteur {
     
     public Vecteur(int taille) {
         this.taille = taille;
+        vect = new double[taille];
     }
 
     public void setTaille(int taille) {

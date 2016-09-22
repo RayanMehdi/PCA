@@ -13,12 +13,18 @@ public class Matrice {
     //Attributs
     private int lignes;
     private int colonnes;
-    private double[][] matr=new double [lignes][colonnes];
+    private double[][] matr;
     //Methodes
   
     public Matrice(int Ligne, int Colonnes){
         this.lignes=Ligne;
         this.colonnes=Colonnes;
+        matr = new double[lignes][colonnes];
+        /*for( int i = 0 ; i < lignes ; i++){
+            for( int j = 0 ; i < colonnes ; j++){
+                
+            }
+        }*/
     }
     
     public void aff_matrice(){

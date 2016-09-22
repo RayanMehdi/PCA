@@ -16,11 +16,19 @@ public class Test {
     
     public Test(){
         
+        
         for( int i = 0; i < m.getColonnes(); i++ ){
                for( int j = 0; j < m.getLigne(); j++ ){
                    m.setElement(j, i, 2);
                }
         }
+        
+        for(int i = 0; i < v.getTaille() ; i++){
+            v.setElement(i, 1);
+        }
+        
+        m.aff_matrice();
+        v.aff_vecteur();
     }
     
 }
