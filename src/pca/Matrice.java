@@ -30,8 +30,9 @@ public class Matrice {
     public void aff_matrice(){
         for(int i = 0; i < this.colonnes; i++){
             for( int j = 0; j < this.lignes; j++){
-                System.out.println("ligne " + j +  " colonne " + i + " : " + this.matr[j][i]);
+                System.out.print(this.matr[j][i]+" | ");
             }
+            System.out.println();
         }
     }
     public void setLigne(int ligne){
