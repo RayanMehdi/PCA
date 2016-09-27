@@ -18,7 +18,7 @@ public class PCA {
         // TODO code application logic here
         Test t = new Test();
         CalculMatriciel c = new CalculMatriciel(t.getMatr(), t.getVect(), 0.0001);
-        c.launch();
+        c.calcul_valeurpropre();
     }
     
 }
