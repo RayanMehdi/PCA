@@ -34,7 +34,7 @@ public class CalculMatriciel {
     -retourné au while
     */
     
-    public void launch(){
+    public void calcul_valeurpropre(){//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = v;
         double valeur_propre = 1, valeur_propre_2 = 0;
         while( Math.abs(valeur_propre - valeur_propre_2)> arret){
