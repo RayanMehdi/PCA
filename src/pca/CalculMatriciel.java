@@ -20,6 +20,7 @@ public class CalculMatriciel {
     private Vecteur v;
     private double pourcentageTrace;
     private ArrayList<Double> tabValPropre;
+    private ArrayList<Vecteur> tabVectPropre;
     
     //initialise m et v ainsi q'une variable arret
     
@@ -28,6 +29,7 @@ public class CalculMatriciel {
         this.v = v;
         this.pourcentageTrace = pourcentageTrace;
         tabValPropre = new ArrayList();
+        tabVectPropre = new ArrayList<>();
     }
     
     /* commence l'algo
@@ -38,6 +40,8 @@ public class CalculMatriciel {
     -v = v/norm(v) 
     -retourné au while
     */
+    
+    //pour deflation 
     
     /*
     A faire : prendre la fonction deflation
@@ -55,13 +59,19 @@ public class CalculMatriciel {
         while( sumTab() >= trace*pourcentageTrace){
            valeur_propre = valeur_propre_2;
            v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
-           v = multiplicate(v2);// rpz le vecteur x dans l'algo
+           v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
            valeur_propre_2 = transposition(v2,v);
-           v2.aff_vecteur();
-            System.out.println(valeur_propre_2);
-            tabValPropre.add(valeur_propre_2);
-           
+           tabValPropre.add(valeur_propre_2);
+           tabVectPropre.add(v2);
+           deflation();
         }
+    }
+    
+    public void deflation(){
+        //
+        Matrice m;
+        m = sub(this.m, multiplicate(tabVectPropre.get(tabVectPropre.size())));
+        this.m = m;
     }
     
     public double sumTab(){
@@ -83,7 +93,29 @@ public class CalculMatriciel {
         return trace;
     }
     
-    public Vecteur multiplicate(Vecteur v){
+    public Matrice sub(Matrice m, Matrice m2){
+        Matrice z = new Matrice(m.getLigne(),m.getColonnes());
+        for (int i = 0; i < m.getLigne(); i++) {
+            for (int j = 0; j < m.getColonnes(); j++) {
+                z.setElement(i, j,m.getElement(i, j) - m2.getElement(i, j));
+            }
+        }
+        return z;
+    }
+    
+    public Matrice multiplicate (Vecteur v){
+        Matrice m = new Matrice(v.getTaille(), v.getTaille());
+         Vecteur test = new Vecteur(v.getTaille());
+        double value = 0;
+        for( int i = 0; i < test.getTaille(); i++){
+            for (int j = 0; j < test.getTaille(); j++) {
+                m.setElement(i, j, v.getElement(i) * v.getElement(j));
+            }
+        }
+        return m;
+    }
+    
+    public Vecteur multiplicate(Vecteur v, Matrice m){
         Vecteur test = new Vecteur(v.getTaille());
         double value = 0;
         for( int i = 0; i < test.getTaille(); i++){
@@ -111,10 +143,10 @@ public class CalculMatriciel {
     }
     
     public double transposition(Vecteur v, Vecteur v2){
-        double vPropre = 0;
+        double valPropre = 0;
         for(int i = 0; i < v.getTaille() ; i++){
-            vPropre += v.getElement(i)*v2.getElement(i);
+            valPropre += v.getElement(i)*v2.getElement(i);
         }
-        return vPropre;
+        return valPropre;
     }
 }
