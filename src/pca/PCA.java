@@ -17,9 +17,7 @@ public class PCA {
     public static void main(String[] args) {
         // TODO code application logic here
         Test t = new Test();
-        CalculMatriciel c = new CalculMatriciel(t.getMatr(), t.getVect(), 0.90);
-        c.calcul_valeurpropre();
-        c.affTab();
+        
         
     }
     

@@ -42,8 +42,11 @@ public class Test {
         //imag.();
         
         m=imag.MatriceNoirBlanc();
-        m.aff_matrice();
+        //m.aff_matrice();
 
+        CalculMatriciel c = new CalculMatriciel(m, v, 0.90);
+        c.calcul_valeurpropre();
+        //c.affTab();
         m.creerImage();
         
         //v.aff_vecteur();
