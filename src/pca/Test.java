@@ -11,7 +11,7 @@ package pca;
  */
 public class Test {
 
-    Image imag = new Image("sans.png");
+    Image imag = new Image("test1.png");
 
     public Test(){
         
@@ -36,7 +36,8 @@ public class Test {
         //imag.();
         
         Matrice m=imag.MatriceNoirBlanc();
-        //m.aff_matrice();
+        
+        m.aff_matrice();
         Vecteur v = new Vecteur(m.getLigne());
                 for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
