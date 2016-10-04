@@ -12,13 +12,11 @@ package pca;
 public class Test {
     
     Matrice m = new Matrice(10,10);
-<<<<<<< HEAD
-    Vecteur v = new Vecteur(3);
-    Image imag = new Image("sans.png");
-=======
+
+
     Vecteur v = new Vecteur(m.getLigne());
-    Image imag = new Image("test.jpg");
->>>>>>> refs/remotes/origin/test
+    Image imag = new Image("sans.png");
+
     public Test(){
         
         
@@ -45,13 +43,13 @@ public class Test {
         
         m=imag.MatriceNoirBlanc();
         m.aff_matrice();
-<<<<<<< HEAD
+
         m.creerImage();
         
         //v.aff_vecteur();
-=======
+
        // v.aff_vecteur();
->>>>>>> refs/remotes/origin/test
+
         
     }
     
