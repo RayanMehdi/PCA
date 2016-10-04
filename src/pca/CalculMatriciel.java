@@ -56,7 +56,7 @@ public class CalculMatriciel {
         double valeur_propre = 1, valeur_propre_2 = 0;
         double trace = calcul_trace();
         //while( Math.abs(valeur_propre - valeur_propre_2)> arret){
-        while( sumTab() >= trace*pourcentageTrace){
+        while( sumTab() <= trace*pourcentageTrace){
            valeur_propre = valeur_propre_2;
            v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
            v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
@@ -70,7 +70,7 @@ public class CalculMatriciel {
     public void deflation(){
         //
         Matrice m;
-        m = sub(this.m, multiplicate(tabVectPropre.get(tabVectPropre.size())));
+        m = sub(this.m, multiplicate(tabVectPropre.get(tabVectPropre.size()-1)));
         this.m = m;
     }
     
@@ -94,6 +94,7 @@ public class CalculMatriciel {
     }
     
     public Matrice sub(Matrice m, Matrice m2){
+        System.out.println(m2.getLigne() + " c " + m2.getColonnes() + " m " + m.getLigne() + " c " + m.getColonnes());
         Matrice z = new Matrice(m.getLigne(),m.getColonnes());
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m.getColonnes(); j++) {
@@ -104,6 +105,7 @@ public class CalculMatriciel {
     }
     
     public Matrice multiplicate (Vecteur v){
+        System.out.println(v.getTaille()+ " taille ");
         Matrice m = new Matrice(v.getTaille(), v.getTaille());
          Vecteur test = new Vecteur(v.getTaille());
         double value = 0;
@@ -148,5 +150,11 @@ public class CalculMatriciel {
             valPropre += v.getElement(i)*v2.getElement(i);
         }
         return valPropre;
+    }
+    
+    public void affTab(){
+        for (Vecteur v : tabVectPropre) {
+            v.aff_vecteur();
+        }
     }
 }
