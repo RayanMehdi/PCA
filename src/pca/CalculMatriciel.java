@@ -54,6 +54,7 @@ public class CalculMatriciel {
     
     public void calcul_valeurpropre(){//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = v;
+        int i= 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
         double trace = calcul_trace();
         //while( Math.abs(valeur_propre - valeur_propre_2)> arret){
@@ -62,9 +63,11 @@ public class CalculMatriciel {
            v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
            v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
            valeur_propre_2 = transposition(v2,v);
-           tabValPropre.add(valeur_propre_2);
+           tabValPropre.add(Math.abs(valeur_propre_2));
            tabVectPropre.add(v2);
            deflation();
+           i++;
+            System.out.println("nb ite"+ i);
         }
         this.mvp=cree_matrice_vect_propre();
         
@@ -90,18 +93,17 @@ public class CalculMatriciel {
     }
     
     public double calcul_trace(){
-        int trace = 0;
+        double trace = 0;
         for( int i = 0; i < m.getColonnes(); i++){
             for (int j = 0; j < m.getLigne(); j++) {
                 if( i == j )
-                    trace += m.getElement(i, j);
+                    trace += Math.abs(m.getElement(i, j));
             }
         }
         return trace;
     }
     
     public Matrice sub(Matrice m, Matrice m2){
-        System.out.println(m2.getLigne() + " c " + m2.getColonnes() + " m " + m.getLigne() + " c " + m.getColonnes());
         Matrice z = new Matrice(m.getLigne(),m.getColonnes());
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m.getColonnes(); j++) {
@@ -112,7 +114,6 @@ public class CalculMatriciel {
     }
     
     public Matrice multiplicate (Vecteur v){
-        System.out.println(v.getTaille()+ " taille ");
         Matrice m = new Matrice(v.getTaille(), v.getTaille());
          Vecteur test = new Vecteur(v.getTaille());
         double value = 0;

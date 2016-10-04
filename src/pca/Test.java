@@ -10,11 +10,7 @@ package pca;
  * @author rayanmehdi1
  */
 public class Test {
-    
-    Matrice m = new Matrice(10,10);
 
-
-    Vecteur v = new Vecteur(m.getLigne());
     Image imag = new Image("sans.png");
 
     public Test(){
@@ -36,15 +32,17 @@ public class Test {
         m.setElement(1, 1, 2);
         m.setElement(2, 2, 3);
         */
-        for(int i = 0; i < v.getTaille() ; i++){
-            v.setElement(i, 1);
-        }
+
         //imag.();
         
-        m=imag.MatriceNoirBlanc();
+        Matrice m=imag.MatriceNoirBlanc();
         //m.aff_matrice();
+        Vecteur v = new Vecteur(m.getLigne());
+                for(int i = 0; i < v.getTaille() ; i++){
+            v.setElement(i, 1);
+        }
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.90);
+        CalculMatriciel c = new CalculMatriciel(m, v, 0.5);
         c.calcul_valeurpropre();
         //c.affTab();
         m.creerImage();
@@ -55,13 +53,6 @@ public class Test {
 
         
     }
-    
-    public Vecteur getVect(){
-        return v;
-    }
-    
-    public Matrice getMatr(){
-        return m;
-    }
+
     
 }
