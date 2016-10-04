@@ -40,6 +40,8 @@ public class Test {
         
         m=imag.MatriceNoirBlanc();
         m.aff_matrice();
+        m.creerImage();
+        
         //v.aff_vecteur();
         
     }

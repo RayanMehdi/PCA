@@ -5,6 +5,14 @@
  */
 package pca;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author rayanmehdi1
@@ -35,6 +43,39 @@ public class Matrice {
             System.out.println();
         }
     }
+    
+    public void creerImage(){
+        
+        try{
+        
+        
+        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, 3);
+        
+        for(int x = 0; x < this.lignes; x++) {
+            for(int y = 0; y < this.colonnes; y++) {
+                   System.out.println((int)this.matr[x][y]);  
+                    //Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
+                    //int rgb = col.getRGB();
+                    
+                    int rgb = (int)this.matr[x][y];
+                    
+                    b.setRGB(y, x, rgb);
+                    
+                    System.out.println(b.getRGB(y, x));  
+            }
+        }
+        ImageIO.write(b, "png", new File("testtt.png"));
+        System.out.println("end");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+	}
+       
+        
+    }
+    
+    
+    
+    
     public void setLigne(int ligne){
         this.lignes=ligne;
     }
