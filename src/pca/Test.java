@@ -44,7 +44,7 @@ public class Test {
         m=imag.MatriceNoirBlanc();
         //m.aff_matrice();
 
-        CalculMatriciel c = new CalculMatriciel(t.getMatr(), t.getVect(), 0.90);
+        CalculMatriciel c = new CalculMatriciel(m, v, 0.90);
         c.calcul_valeurpropre();
         //c.affTab();
         m.creerImage();
