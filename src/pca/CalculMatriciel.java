@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class CalculMatriciel {
     //Attributs
     private Matrice m;
+    private Matrice mvp;
     private Vecteur v;
     private double pourcentageTrace;
     private ArrayList<Double> tabValPropre;
@@ -65,6 +66,12 @@ public class CalculMatriciel {
            tabVectPropre.add(v2);
            deflation();
         }
+        this.mvp=cree_matrice_vect_propre();
+        
+    }
+
+    public Matrice getMvp() {
+        return mvp;
     }
     
     public void deflation(){
@@ -128,6 +135,19 @@ public class CalculMatriciel {
             value = 0;
         }
         return test;
+    }
+    
+    public Matrice cree_matrice_vect_propre(){
+        Matrice mvp = new Matrice(this.tabVectPropre.get(0).getTaille(),this.tabVectPropre.get(0).getTaille());
+        for(int i=0;i<mvp.getColonnes();i++){
+            for(int j=0;j<mvp.getLigne();j++){
+                mvp.setElement(j, i, tabVectPropre.get(i).getElement(j));
+                
+            }
+        }
+        mvp.aff_matrice();
+        
+        return mvp;
     }
     
     public Vecteur norme_vecteur(Vecteur v){
