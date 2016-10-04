@@ -13,7 +13,7 @@ public class Test {
     
     Matrice m = new Matrice(10,10);
     Vecteur v = new Vecteur(3);
-    Image imag = new Image("test.jpg");
+    Image imag = new Image("sans.png");
     public Test(){
         
         
