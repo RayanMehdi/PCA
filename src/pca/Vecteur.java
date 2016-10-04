@@ -19,6 +19,7 @@ public class Vecteur {
        for( int i = 0; i < taille; i++){
            System.out.println("["+i+"] "+vect[i]);
        }
+        System.out.println("fin");
     }
 
     public double getElement(int i){
