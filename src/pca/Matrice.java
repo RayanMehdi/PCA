@@ -64,7 +64,7 @@ public class Matrice {
                     System.out.println(b.getRGB(y, x));  
             }
         }
-        ImageIO.write(b, "png", new File("testtt.png"));
+        ImageIO.write(b, "png", new File("test.png"));
         System.out.println("end");
         } catch (IOException e) {
             System.out.println(e.getMessage());
