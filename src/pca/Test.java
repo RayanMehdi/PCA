@@ -12,7 +12,7 @@ package pca;
 public class Test {
     
     Matrice m = new Matrice(10,10);
-    Vecteur v = new Vecteur(3);
+    Vecteur v = new Vecteur(m.getLigne());
     Image imag = new Image("test.jpg");
     public Test(){
         
@@ -40,7 +40,7 @@ public class Test {
         
         m=imag.MatriceNoirBlanc();
         m.aff_matrice();
-        //v.aff_vecteur();
+       // v.aff_vecteur();
         
     }
     
