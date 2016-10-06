@@ -37,7 +37,7 @@ public class Test {
         
         Matrice m=imag.MatriceNoirBlanc();
         
-        m.aff_matrice();
+        //m.aff_matrice();
         Vecteur v = new Vecteur(m.getLigne());
                 for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
