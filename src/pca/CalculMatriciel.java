@@ -53,10 +53,11 @@ public class CalculMatriciel {
     */
     
     public void calcul_valeurpropre(){//permet de calculer le vecteur propre et la valeur propre de la matrice
-        Vecteur v2 = v;
+        Vecteur v2 = (Vecteur)v.clone();
         int i= 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
         double trace = calcul_trace();
+        System.out.println(trace);
         //while( Math.abs(valeur_propre - valeur_propre_2)> arret){
         while( sumTab() <= trace*pourcentageTrace){
            valeur_propre = valeur_propre_2;
@@ -68,6 +69,7 @@ public class CalculMatriciel {
            deflation();
            i++;
             System.out.println("nb ite"+ i);
+            System.out.println(valeur_propre_2);
         }
         this.mvp=cree_matrice_vect_propre();
         
@@ -145,7 +147,6 @@ public class CalculMatriciel {
                mvp.setElement(k, j, tabVectPropre.get(j).getElement(k));
             }
         }
-        mvp.aff_matrice();
         
         return mvp;
     }
@@ -176,5 +177,29 @@ public class CalculMatriciel {
         for (Vecteur v : tabVectPropre) {
             v.aff_vecteur();
         }
+    }
+
+    public double covariance(Vecteur v1, Vecteur v2) {
+        if (v1.getTaille() != v2.getTaille()) {
+            System.out.println("Probleme, la taille des deux vecteurs pour le calcul de covariance est différent.");
+            return 2;
+        } else {
+            double xm = moyenne(v1);
+            double ym = moyenne(v2);
+            double value1 = 0, value2 = 0;
+            for (int i = 0; i < v1.getTaille(); i++) {
+                value1 += v1.getElement(i) - xm;
+                value2 += v2.getElement(i) - ym;
+            }
+            return value1 * value2 * (1 / v1.getTaille());
+        }
+    }
+
+    public double moyenne(Vecteur v){
+        double m = 0;
+        for (int i = 0; i < v.getTaille(); i++) {
+            m += v.getElement(i);
+        }
+        return m/v.getTaille();
     }
 }

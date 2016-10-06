@@ -53,7 +53,6 @@ public class Matrice {
         
         for(int x = 0; x < this.lignes; x++) {
             for(int y = 0; y < this.colonnes; y++) {
-                   System.out.println((int)this.matr[x][y]);  
                     //Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
                     //int rgb = col.getRGB();
                     
@@ -61,11 +60,9 @@ public class Matrice {
                     
                     b.setRGB(y, x, rgb);
                     
-                    System.out.println(b.getRGB(y, x));  
             }
         }
         ImageIO.write(b, "png", new File("test.png"));
-        System.out.println("end");
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
