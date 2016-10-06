@@ -177,4 +177,41 @@ public class CalculMatriciel {
             v.aff_vecteur();
         }
     }
+         public double moyenne(int col){
+        double moy =0.0;
+        for(double i=0;i<this.m.getLigne();i++){
+            moy+=this.m.getElement((int) i, col);
+        }
+        moy=moy/this.m.getLigne();
+    
+    return moy;
+    }
+    
+    public double variance(int col){
+        double var = 0.0;
+        double moy = this.moyenne(col);
+        for(double i=0;i<this.m.getLigne();i++){
+            var=(this.m.getElement((int)i, col)-moy)*(this.m.getElement((int)i, col)-moy);
+        }
+        var=var/this.m.getLigne();
+        return var;
+    }
+    
+    public double ecart_type(int col){
+        return sqrt(this.variance(col));
+    }
+    
+    public void centrer_reduire(){
+        for(int i=0;i<this.m.getLigne();i++){
+            for(int j=0;j<this.m.getColonnes();j++){
+                double new_value=0.0;
+                new_value =(this.m.getElement(i, j)-moyenne(j))/ecart_type(j);
+                this.m.getElement(i, j);
+            }
+        }
+        
+    }
+    
+    
+    
 }
