@@ -56,9 +56,16 @@ public class CalculMatriciel {
         Vecteur v2 = (Vecteur)v.clone();
         int i= 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
+        this.m.aff_matrice();
+        System.out.println("GOOOOOOOOOOO");
+        centrer_reduire();
+        System.out.println("PROOOOOOOOOOOOOOOOOOOOOOOTTTT");
+        this.m = multiplicate(this.m, transposition(this.m));
+        this.m.aff_matrice();
+        System.out.println("FIIIIIIIIIIIIN");
+        //while( Math.abs(valeur_propre - valeur_propre_2)> arret){
         double trace = calcul_trace();
         System.out.println(trace);
-        //while( Math.abs(valeur_propre - valeur_propre_2)> arret){
         while( sumTab() <= trace*pourcentageTrace){
            valeur_propre = valeur_propre_2;
            v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
@@ -71,6 +78,7 @@ public class CalculMatriciel {
             System.out.println("nb ite"+ i);
             System.out.println(valeur_propre_2);
         }
+        //tabVectPropre.get(0).aff_vecteur();
         this.mvp=cree_matrice_vect_propre();
         
     }
@@ -140,6 +148,21 @@ public class CalculMatriciel {
         return test;
     }
     
+    public Matrice multiplicate(Matrice m, Matrice m2){
+        Matrice mReturn = new Matrice( m.getLigne(), m.getColonnes());
+        double somme =0;
+        for (int i = 0; i < m.getLigne(); i++) {
+            for (int j = 0; j < m.getColonnes(); j++) {
+                for (int k = 0; k < m.getColonnes(); k++) {
+                    somme += m.getElement(i, k) * m2.getElement(k, i);
+                }
+                mReturn.setElement(j, i, somme);
+                somme = 0;
+            }
+        }
+        return mReturn;
+    }
+    
     public Matrice cree_matrice_vect_propre(){
         Matrice mvp = new Matrice(this.tabVectPropre.get(0).getTaille(),this.tabVectPropre.size());
         for(int j=0; j<mvp.getColonnes();j++){
@@ -147,7 +170,7 @@ public class CalculMatriciel {
                mvp.setElement(k, j, tabVectPropre.get(j).getElement(k));
             }
         }
-        
+        mvp.aff_matrice();
         return mvp;
     }
     
@@ -250,4 +273,5 @@ public class CalculMatriciel {
         }
         return m/v.getTaille();
     }
+    
 }
