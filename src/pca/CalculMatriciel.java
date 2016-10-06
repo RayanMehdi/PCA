@@ -214,8 +214,8 @@ public class CalculMatriciel {
     }
          public double moyenne(int col){
         double moy =0.0;
-        for(double i=0;i<this.m.getLigne();i++){
-            moy+=this.m.getElement((int) i, col);
+        for(int i=0;i<this.m.getLigne();i++){
+            moy+=this.m.getElement(i, col);
         }
         moy=moy/this.m.getLigne();
     
@@ -225,8 +225,8 @@ public class CalculMatriciel {
     public double variance(int col){
         double var = 0.0;
         double moy = this.moyenne(col);
-        for(double i=0;i<this.m.getLigne();i++){
-            var=(this.m.getElement((int)i, col)-moy)*(this.m.getElement((int)i, col)-moy);
+        for(int i=0;i<this.m.getLigne();i++){
+            var=(this.m.getElement(i, col)-moy)*(this.m.getElement(i, col)-moy);
         }
         var=var/this.m.getLigne();
         return var;
