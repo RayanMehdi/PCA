@@ -139,11 +139,10 @@ public class CalculMatriciel {
     }
     
     public Matrice cree_matrice_vect_propre(){
-        Matrice mvp = new Matrice(this.tabVectPropre.get(0).getTaille(),this.tabVectPropre.get(0).getTaille());
-        for(int i=0;i<mvp.getColonnes();i++){
-            for(int j=0;j<mvp.getLigne();j++){
-                mvp.setElement(j, i, tabVectPropre.get(i).getElement(j));
-                
+        Matrice mvp = new Matrice(this.tabVectPropre.get(0).getTaille(),this.tabVectPropre.size());
+        for(int j=0; j<mvp.getColonnes();j++){
+            for (int k = 0; k < mvp.getLigne(); k++) {
+               mvp.setElement(k, j, tabVectPropre.get(j).getElement(k));
             }
         }
         mvp.aff_matrice();
