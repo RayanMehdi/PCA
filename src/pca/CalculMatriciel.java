@@ -172,6 +172,17 @@ public class CalculMatriciel {
         }
         return valPropre;
     }
+    public Matrice transposition(Matrice m){
+        int ligne = m.getLigne();
+        int colonnes = m.getColonnes();
+        Matrice transpose = new Matrice(ligne, colonnes);
+        for(int i=0; i < ligne; i++){
+            for(int j=0; j < colonnes ;j++){
+               transpose.setElement(i,j,m.getElement(j, i));
+            }
+        }
+        return transpose;
+    }
     
     public void affTab(){
         for (Vecteur v : tabVectPropre) {
