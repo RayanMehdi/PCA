@@ -226,7 +226,7 @@ public class CalculMatriciel {
         double var = 0.0;
         double moy = this.moyenne(col);
         for(int i=0;i<this.m.getLigne();i++){
-            var=(this.m.getElement(i, col)-moy)*(this.m.getElement(i, col)-moy);
+            var+=(this.m.getElement(i, col)-moy)*(this.m.getElement(i, col)-moy);
         }
         var=var/this.m.getLigne();
         return var;
