@@ -70,11 +70,13 @@ public class CalculMatriciel {
            valeur_propre = valeur_propre_2;
            v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
            v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
+           
            valeur_propre_2 = transposition(v2,v);
            tabValPropre.add(Math.abs(valeur_propre_2));
            tabVectPropre.add(v2);
            deflation();
            i++;
+            v.aff_vecteur();
             System.out.println("nb ite"+ i);
             System.out.println(valeur_propre_2);
         }
@@ -226,7 +228,7 @@ public class CalculMatriciel {
         double var = 0.0;
         double moy = this.moyenne(col);
         for(int i=0; i < this.m.getLigne(); i++){
-            var+=(this.m.getElement(i, col) - moy) * (this.m.getElement(i, col) - moy);
+            var += (this.m.getElement(i, col) - moy) * (this.m.getElement(i, col) - moy);
         }
         var /= this.m.getLigne();
         return var;
@@ -240,8 +242,8 @@ public class CalculMatriciel {
         for(int i=0;i<this.m.getLigne();i++){
             for(int j=0;j<this.m.getColonnes();j++){
                 double new_value=0.0;
-                new_value =(this.m.getElement(i, j)-moyenne(j))/ecart_type(j);
-                this.m.getElement(i, j);
+                new_value = (this.m.getElement(i, j) - moyenne(j)) / ecart_type(j);
+                this.m.setElement(i, j, new_value);
             }
         }
         
