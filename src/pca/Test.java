@@ -35,7 +35,7 @@ public class Test {
         
         m1 = multiplicate(m1,m2);
         System.out.println("MATRICEEEEEEEEEE");
-        m1.aff_matrice();
+        //m1.aff_matrice();
         
         
         

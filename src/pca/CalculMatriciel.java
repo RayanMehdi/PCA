@@ -56,14 +56,9 @@ public class CalculMatriciel {
         Vecteur v2 = (Vecteur)v.clone();
         int i= 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
-        this.m.aff_matrice();
-        System.out.println("GOOOOOOOOOOO");
         centrer_reduire();
-        System.out.println("PROOOOOOOOOOOOOOOOOOOOOOOTTTT");
-        this.m = multiplicate(this.m, transposition(this.m));
-        this.m.aff_matrice();
-        System.out.println("FIIIIIIIIIIIIN");
-        //while( Math.abs(valeur_propre - valeur_propre_2)> arret){
+        Matrice transpositions = transposition(this.m);
+       this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace();
         System.out.println(trace);
         while( sumTab() <= trace*pourcentageTrace){
@@ -156,9 +151,9 @@ public class CalculMatriciel {
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m.getColonnes(); j++) {
                 for (int k = 0; k < m.getColonnes(); k++) {
-                    somme += m.getElement(i, k) * m2.getElement(k, i);
+                    somme += m.getElement(i, k) * m2.getElement(k, j);
                 }
-                mReturn.setElement(j, i, somme);
+                mReturn.setElement(i, j, somme);
                 somme = 0;
             }
         }
@@ -206,6 +201,7 @@ public class CalculMatriciel {
                transpose.setElement(i,j,m.getElement(j, i));
             }
         }
+        
         return transpose;
     }
     
@@ -228,7 +224,7 @@ public class CalculMatriciel {
         double var = 0.0;
         double moy = this.moyenne(col);
         for(int i=0; i < this.m.getLigne(); i++){
-            var += (this.m.getElement(i, col) - moy) * (this.m.getElement(i, col) - moy);
+            var += ((this.m.getElement(i, col) - moy) * (this.m.getElement(i, col) - moy));
         }
         var /= this.m.getLigne();
         return var;
@@ -239,11 +235,12 @@ public class CalculMatriciel {
     }
     
     public void centrer_reduire(){
+        double new_value = 0;
         for(int i=0;i<this.m.getLigne();i++){
             for(int j=0;j<this.m.getColonnes();j++){
-                double new_value=0.0;
                 new_value = (this.m.getElement(i, j) - moyenne(j)) / ecart_type(j);
                 this.m.setElement(i, j, new_value);
+                new_value = 0;
             }
         }
         
