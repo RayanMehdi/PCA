@@ -53,12 +53,12 @@ public class Matrice {
         
         for(int x = 0; x < this.lignes; x++) {
             for(int y = 0; y < this.colonnes; y++) {
-                    Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
-                    int rgb = col.getRGB();
+                    //Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
+                    //int rgb = col.getRGB();
                     
-                    //int rgb = (int)this.matr[x][y];
+                    int rgb = (int)this.matr[x][y];
                     
-                    b.setRGB(y, x, rgb);
+                    //b.setRGB(y, x, rgb);
                     
             }
         }
