@@ -55,23 +55,24 @@ public class CalculMatriciel {
     public void calcul_valeurpropre(){//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = (Vecteur)v.clone();
         int i= 0;
-        double valeur_propre = 1, valeur_propre_2 = 0;
+        double valeur_propre = 0, valeur_propre_2 = 0;
+        
         centrer_reduire();
-        Matrice transpositions = transposition(this.m);
        this.m = multiplicate(this.m, transposition(this.m));
-        double trace = calcul_trace();
+        double trace = calcul_trace(this.m);
         System.out.println(trace);
+        m.aff_matrice();
         while( sumTab() <= trace*pourcentageTrace){
            valeur_propre = valeur_propre_2;
-           v2 = norme_vecteur(v2); //rpz le vecteur B dans lalgo
+            System.out.println("vec");
+           v2 = norme_vecteur(v); //rpz le vecteur B dans lalgo
            v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
            
-           valeur_propre_2 = transposition(v2,v);
-           tabValPropre.add(Math.abs(valeur_propre_2));
+           valeur_propre_2 = transposition(v,v2);
+           tabValPropre.add(valeur_propre_2);
            tabVectPropre.add(v2);
            deflation();
            i++;
-            v.aff_vecteur();
             System.out.println("nb ite"+ i);
             System.out.println(valeur_propre_2);
         }
@@ -87,7 +88,7 @@ public class CalculMatriciel {
     public void deflation(){
         //
         Matrice m;
-        m = sub(this.m, multiplicate(tabVectPropre.get(tabVectPropre.size()-1)));
+        m = sub(this.m, multiplicate(multiplicate(tabVectPropre.get(tabVectPropre.size()-1)), tabValPropre.get(tabValPropre.size()-1)));
         this.m = m;
     }
     
@@ -99,12 +100,12 @@ public class CalculMatriciel {
         return sum;
     }
     
-    public double calcul_trace(){
+    public double calcul_trace(Matrice m){
         double trace = 0;
         for( int i = 0; i < m.getColonnes(); i++){
             for (int j = 0; j < m.getLigne(); j++) {
                 if( i == j )
-                    trace += Math.abs(m.getElement(i, j));
+                    trace += m.getElement(i, j);
             }
         }
         return trace;
@@ -118,6 +119,16 @@ public class CalculMatriciel {
             }
         }
         return z;
+    }
+    
+    public Matrice multiplicate( Matrice m, double val){
+        Matrice ret = new Matrice(m.getLigne(), m.getColonnes());
+        for (int i = 0; i < m.getColonnes(); i++) {
+            for (int j = 0; j < m.getLigne(); j++) {
+                ret.setElement(i, j, val * m.getElement(i, j));
+            }
+        }
+        return ret;
     }
     
     public Matrice multiplicate (Vecteur v){
@@ -149,11 +160,15 @@ public class CalculMatriciel {
         Matrice mReturn = new Matrice( m.getLigne(), m.getColonnes());
         double somme =0;
         for (int i = 0; i < m.getLigne(); i++) {
-            for (int j = 0; j < m.getColonnes(); j++) {
+            for (int j = 0; j < m2.getColonnes(); j++) {
+                somme = 0;
                 for (int k = 0; k < m.getColonnes(); k++) {
-                    somme += m.getElement(i, k) * m2.getElement(k, j);
+                    mReturn.setElement(i, j, mReturn.getElement(i, j) + m.getElement(i, k) * m2.getElement(k, j));
+                    //somme += m.getElement(i, k) * m2.getElement(k, j);
+                    //System.out.println("SOMME   " + somme);
                 }
-                mReturn.setElement(i, j, somme);
+                //System.out.println("PROUT " + mReturn.getElement(i, j));
+                //mReturn.setElement(i, j, somme);
                 somme = 0;
             }
         }
@@ -177,8 +192,7 @@ public class CalculMatriciel {
         for( int i = 0; i < v.getTaille() ; i++){
             norme += v.getElement(i) * v.getElement(i);
         }
-        norme = sqrt(norme);
-        
+        norme = Math.sqrt(norme);
         for( int i = 0; i < v.getTaille() ; i++){
             vNorme.setElement(i, v.getElement(i)/norme);
         }
@@ -188,6 +202,7 @@ public class CalculMatriciel {
     public double transposition(Vecteur v, Vecteur v2){
         double valPropre = 0;
         for(int i = 0; i < v.getTaille() ; i++){
+            System.out.println(v.getElement(i) + " lol " + v2.getElement(i));
             valPropre += v.getElement(i)*v2.getElement(i);
         }
         return valPropre;
@@ -231,7 +246,7 @@ public class CalculMatriciel {
     }
     
     public double ecart_type(int col){
-        return sqrt(this.variance(col));
+        return Math.sqrt(this.variance(col));
     }
     
     public void centrer_reduire(){
@@ -240,7 +255,6 @@ public class CalculMatriciel {
             for(int j=0;j<this.m.getColonnes();j++){
                 new_value = (this.m.getElement(i, j) - moyenne(j)) / ecart_type(j);
                 this.m.setElement(i, j, new_value);
-                new_value = 0;
             }
         }
         

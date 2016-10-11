@@ -34,23 +34,15 @@ public class Test {
         m2.setElement(2, 2, 3);
         
         m1 = multiplicate(m1,m2);
-        System.out.println("MATRICEEEEEEEEEE");
-        //m1.aff_matrice();
-        
-        
-        
-
-        //imag.();
         
         Matrice m=imag.MatriceNoirBlanc();
         
-        //m.aff_matrice();
         Vecteur v = new Vecteur(m.getLigne());
                 for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
         }
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.5);
+        CalculMatriciel c = new CalculMatriciel(m, v, 0.9);
         c.calcul_valeurpropre();
         //c.affTab();
         //c.getMvp().creerImage();
