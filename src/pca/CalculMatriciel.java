@@ -56,7 +56,7 @@ public class CalculMatriciel {
         this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace(this.m);
         System.out.println(trace);
-        m.aff_matrice();
+        //m.aff_matrice();
         while (sumTab() <= trace * pourcentageTrace) {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
@@ -279,7 +279,6 @@ public class CalculMatriciel {
         double valeur_propre = 0, valeur_propre_2 = 1;
         while (Math.abs(valeur_propre - valeur_propre_2) > 0.00000000001 && !vecteur_propre(v2)) {
             valeur_propre = valeur_propre_2;
-            System.out.println("vec");
             v2 = norme_vecteur(v); //rpz le vecteur B dans lalgo
             v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
 
@@ -297,7 +296,6 @@ public class CalculMatriciel {
         double val = 0;
         for (int i = 0; i < v.getTaille(); i++) {
             val += v.getElement(i) * v.getElement(i);
-            System.out.println(val);
         }
         if (sqrt(val) == 1) {
             return true;
