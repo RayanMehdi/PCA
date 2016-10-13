@@ -23,6 +23,9 @@ public class CalculMatriciel {
     private double pourcentageTrace;
     private ArrayList<Double> tabValPropre;
     private ArrayList<Vecteur> tabVectPropre;
+    private ArrayList<Double> tabMoyenne;
+    private ArrayList<Double> tabEcartType;
+    
 
     //initialise m et v ainsi q'une variable arret
     public CalculMatriciel(Matrice m, Vecteur v, double pourcentageTrace) {
@@ -31,6 +34,8 @@ public class CalculMatriciel {
         this.pourcentageTrace = pourcentageTrace;
         tabValPropre = new ArrayList();
         tabVectPropre = new ArrayList<>();
+        tabMoyenne = new ArrayList<>();
+        tabEcartType = new ArrayList<>();
     }
 
     /* commence l'algo
@@ -244,6 +249,8 @@ public class CalculMatriciel {
         for (int i = 0; i < this.m.getLigne(); i++) {
             for (int j = 0; j < this.m.getColonnes(); j++) {
                 new_value = (this.m.getElement(i, j) - moyenne(j)) / ecart_type(j);
+                this.tabMoyenne.add(moyenne(j));
+                this.tabEcartType.add(ecart_type(j));
                 this.m.setElement(i, j, new_value);
             }
         }
