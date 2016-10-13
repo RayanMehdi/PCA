@@ -55,7 +55,7 @@ public class CalculMatriciel {
     public void calcul_valeurpropre(){//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = (Vecteur)v.clone();
         int i= 0;
-        double valeur_propre = 0, valeur_propre_2 = 0;
+       
         
         centrer_reduire();
        this.m = multiplicate(this.m, transposition(this.m));
@@ -63,19 +63,12 @@ public class CalculMatriciel {
         System.out.println(trace);
         m.aff_matrice();
         while( sumTab() <= trace*pourcentageTrace){
-           valeur_propre = valeur_propre_2;
-            System.out.println("vec");
-           v2 = norme_vecteur(v); //rpz le vecteur B dans lalgo
-           v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
-           
-           valeur_propre_2 = transposition(v,v2);
-           tabValPropre.add(valeur_propre_2);
-           tabVectPropre.add(v2);
+           calcul_plus_grand_vecteur_propre(v2);
            deflation();
            i++;
-            System.out.println("nb ite"+ i);
-            System.out.println(valeur_propre_2);
+           
         }
+        System.out.println("Nombre vecteur = "+i);
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp=cree_matrice_vect_propre();
         
@@ -202,7 +195,6 @@ public class CalculMatriciel {
     public double transposition(Vecteur v, Vecteur v2){
         double valPropre = 0;
         for(int i = 0; i < v.getTaille() ; i++){
-            System.out.println(v.getElement(i) + " lol " + v2.getElement(i));
             valPropre += v.getElement(i)*v2.getElement(i);
         }
         return valPropre;
@@ -286,5 +278,22 @@ public class CalculMatriciel {
         }
         return m/v.getTaille();
     }
-    
+    public void calcul_plus_grand_vecteur_propre(Vecteur v2){
+        int i=0;
+         double valeur_propre = 0, valeur_propre_2 = 1;
+        while(Math.abs(valeur_propre - valeur_propre_2)>0.00000000001){
+            valeur_propre = valeur_propre_2;
+            System.out.println("vec");
+            v2 = norme_vecteur(v); //rpz le vecteur B dans lalgo
+            v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
+           
+            valeur_propre_2 = transposition(v,v2);
+            i++;
+        }
+            tabValPropre.add(valeur_propre_2);
+            tabVectPropre.add(v2);
+            System.out.println("nb ite"+ i);
+            System.out.println(valeur_propre_2);
+        
+    }
 }
