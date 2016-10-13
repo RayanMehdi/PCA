@@ -11,7 +11,7 @@ package pca;
  */
 public class Test {
 
-    Image imag = new Image("pont.jpg");
+    Image imag = new Image("test10.png");
 
     public Test(){
         

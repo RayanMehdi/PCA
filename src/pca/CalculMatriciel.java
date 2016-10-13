@@ -63,7 +63,7 @@ public class CalculMatriciel {
         this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace(this.m);
         System.out.println(trace);
-        //m.aff_matrice();
+        m.aff_matrice();
         while (sumTab() <= trace * pourcentageTrace) {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
@@ -181,7 +181,7 @@ public class CalculMatriciel {
         return mvp;
     }
 
-    public Vecteur norme_vecteur(Vecteur v) {
+    public Vecteur normalise(Vecteur v) {
         double norme = 0;
         Vecteur vNorme = new Vecteur(v.getTaille());
         for (int i = 0; i < v.getTaille(); i++) {
@@ -194,7 +194,7 @@ public class CalculMatriciel {
         return vNorme;
     }
 
-    public double transposition(Vecteur v, Vecteur v2) {
+    public double produitScalaire(Vecteur v, Vecteur v2) {
         double valPropre = 0;
         for (int i = 0; i < v.getTaille(); i++) {
             valPropre += v.getElement(i) * v2.getElement(i);
@@ -284,15 +284,18 @@ public class CalculMatriciel {
 
     public void calcul_plus_grand_vecteur_propre(Vecteur v2) {
         int i = 0;
-        double valeur_propre = 0, valeur_propre_2 = 1;
+        double valeur_propre = 1, valeur_propre_2 = 0;
         v = (Vecteur) vecteur_base.clone();
-        v2 = (Vecteur) v.clone();
-        while (Math.abs(valeur_propre - valeur_propre_2) > 0.00000000001 && !vecteur_propre(v2)) {
+        v2 = (Vecteur) vecteur_base.clone();
+        while ( Math.abs(valeur_propre_2 - valeur_propre) > 0.00000000001 || !vecteur_propre(v2)) {
             valeur_propre = valeur_propre_2;
-            v2 = norme_vecteur(v); //rpz le vecteur B dans lalgo
+            v2 = normalise(v); //rpz le vecteur B dans lalgo
             v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
-
-            valeur_propre_2 = transposition(v, v2);
+            System.out.println("vp_i="+valeur_propre);
+            valeur_propre_2 = produitScalaire(v, v2);
+            System.out.println("vp_i+1="+valeur_propre_2);
+            System.out.println("v2=");
+            v2.aff_vecteur();
             i++;
         }
         tabValPropre.add(valeur_propre_2);
