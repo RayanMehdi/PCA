@@ -40,7 +40,7 @@ public class Image {
                 
                 couleur = new Color(image.getRGB(colonne, ligne), false);
                 // Traitement ici
-                //System.out.print(image.getRGB(colonne, ligne)+" | ");
+                System.out.print(image.getRGB(colonne, ligne)+" | ");
                 //System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
                 matrix.setElement(ligne, colonne, couleur.getRed());
                 //matrix.setElement(ligne, colonne, couleur.getRGB());
