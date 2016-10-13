@@ -20,6 +20,7 @@ public class CalculMatriciel {
     private Matrice m;
     private Matrice mvp;
     private Vecteur v;
+    private Vecteur vecteur_base;
     private double pourcentageTrace;
     private ArrayList<Double> tabValPropre;
     private ArrayList<Vecteur> tabVectPropre;
@@ -31,6 +32,7 @@ public class CalculMatriciel {
     public CalculMatriciel(Matrice m, Vecteur v, double pourcentageTrace) {
         this.m = m;
         this.v = v;
+        this.vecteur_base = v;
         this.pourcentageTrace = pourcentageTrace;
         tabValPropre = new ArrayList();
         tabVectPropre = new ArrayList<>();
@@ -46,7 +48,7 @@ public class CalculMatriciel {
      -v = v/norm(v) 
      -retourné au while
      */
-    //pour deflation 
+    //pour deflation dsds
     /*
      A faire : prendre la fonction deflation
      utiliser la nouvelle matrice de deflation dans l'algo
@@ -79,7 +81,6 @@ public class CalculMatriciel {
     }
 
     public void deflation() {
-        //
         Matrice m;
         m = sub(this.m, multiplicate(multiplicate(tabVectPropre.get(tabVectPropre.size() - 1)), tabValPropre.get(tabValPropre.size() - 1)));
         this.m = m;
@@ -284,6 +285,8 @@ public class CalculMatriciel {
     public void calcul_plus_grand_vecteur_propre(Vecteur v2) {
         int i = 0;
         double valeur_propre = 0, valeur_propre_2 = 1;
+        v = (Vecteur) vecteur_base.clone();
+        v2 = (Vecteur) v.clone();
         while (Math.abs(valeur_propre - valeur_propre_2) > 0.00000000001 && !vecteur_propre(v2)) {
             valeur_propre = valeur_propre_2;
             v2 = norme_vecteur(v); //rpz le vecteur B dans lalgo
