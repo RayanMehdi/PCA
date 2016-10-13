@@ -115,7 +115,15 @@ public class CalculMatriciel {
         }
         return z;
     }
-
+    public Matrice add(Matrice m,  double valeur) {
+        Matrice z = new Matrice(m.getLigne(), m.getColonnes());
+        for (int i = 0; i < m.getLigne(); i++) {
+            for (int j = 0; j < m.getColonnes(); j++) {
+                z.setElement(i, j, m.getElement(i, j) + valeur);
+            }
+        }
+        return z;
+    }
     public Matrice multiplicate(Matrice m, double val) {
         Matrice ret = new Matrice(m.getLigne(), m.getColonnes());
         for (int i = 0; i < m.getColonnes(); i++) {
@@ -314,5 +322,9 @@ public class CalculMatriciel {
             return true;
         }
         return false;
+    }
+    public void to_matrice_image(double ecart_type,double moyenne){
+        multiplicate(mvp, ecart_type);
+        add(mvp, moyenne);
     }
 }
