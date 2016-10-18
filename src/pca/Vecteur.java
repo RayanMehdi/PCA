@@ -70,8 +70,9 @@ public class Vecteur implements Cloneable{
     
     public void random(){
         Random rn = new Random();
+        int value = rn.nextInt(50 ) + 2;
         for (int i = 0; i < this.taille; i++) {
-            this.setElement(i, rn.nextInt(49) + 1);
+            this.setElement(i, value);
         }
     }
     

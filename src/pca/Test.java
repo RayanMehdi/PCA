@@ -38,12 +38,8 @@ public class Test {
         Matrice m=imag.MatriceNoirBlanc();
         
         Vecteur v = new Vecteur(m.getLigne());
-                for(int i = 0; i < v.getTaille() ; i++){
-            v.setElement(i, 1);
-        }
+        v.random();
                 
-                
-             
 
         CalculMatriciel c = new CalculMatriciel(MatriceRandom(), v, 0.9);
         c.calcul_valeurpropre();
