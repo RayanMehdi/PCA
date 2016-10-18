@@ -62,8 +62,8 @@ public class CalculMatriciel {
         centrer_reduire();
         this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace(this.m);
-        System.out.println(trace);
-        m.aff_matrice();
+        System.out.println("trace : " + trace);
+        //m.aff_matrice();
         while (sumTab() <= trace * pourcentageTrace) {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
@@ -294,6 +294,8 @@ public class CalculMatriciel {
         int i = 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
         vecteur_base.random();
+        System.out.println("vect base");
+        vecteur_base.aff_vecteur();
         v = (Vecteur) vecteur_base.clone();
         v2 = (Vecteur) vecteur_base.clone();
         while ( Math.abs(valeur_propre_2 - valeur_propre) > 0.00000000001 || !vecteur_propre(v2)) {
