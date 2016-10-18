@@ -5,6 +5,8 @@
  */
 package pca;
 
+import java.util.Random;
+
 /**
  *
  * @author rayanmehdi1
@@ -65,6 +67,13 @@ public class Vecteur implements Cloneable{
 		// on renvoie le clone
 		return o;
 	}
+    
+    public void random(){
+        Random rn = new Random();
+        for (int i = 0; i < this.taille; i++) {
+            this.setElement(i, rn.nextInt(49) + 1);
+        }
+    }
     
 
 }

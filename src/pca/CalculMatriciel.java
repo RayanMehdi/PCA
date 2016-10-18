@@ -293,6 +293,7 @@ public class CalculMatriciel {
     public void calcul_plus_grand_vecteur_propre(Vecteur v2) {
         int i = 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
+        vecteur_base.random();
         v = (Vecteur) vecteur_base.clone();
         v2 = (Vecteur) vecteur_base.clone();
         while ( Math.abs(valeur_propre_2 - valeur_propre) > 0.00000000001 || !vecteur_propre(v2)) {
