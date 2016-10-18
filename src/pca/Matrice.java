@@ -34,6 +34,7 @@ public class Matrice {
             }
         }*/
     }
+   
     
     public void aff_matrice(){
         for(int i = 0; i < this.colonnes; i++){
@@ -58,7 +59,7 @@ public class Matrice {
                     
                     int rgb = (int)this.matr[x][y];
                     
-                    b.setRGB(y, x, rgb);
+                    //b.setRGB(y, x, rgb);
                     
             }
         }

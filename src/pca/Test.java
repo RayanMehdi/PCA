@@ -11,7 +11,7 @@ package pca;
  */
 public class Test {
 
-    Image imag = new Image("sans.png");
+    Image imag = new Image("test10.png");
 
     public Test(){
         
@@ -34,23 +34,18 @@ public class Test {
         m2.setElement(2, 2, 3);
         
         m1 = multiplicate(m1,m2);
-        System.out.println("MATRICEEEEEEEEEE");
-        m1.aff_matrice();
-        
-        
-        
-
-        //imag.();
         
         Matrice m=imag.MatriceNoirBlanc();
         
-        //m.aff_matrice();
         Vecteur v = new Vecteur(m.getLigne());
                 for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
         }
+                
+                
+             
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.5);
+        CalculMatriciel c = new CalculMatriciel(MatriceRandom(), v, 0.9);
         c.calcul_valeurpropre();
         //c.affTab();
         //c.getMvp().creerImage();
@@ -76,6 +71,15 @@ public class Test {
         }
         return mReturn;
     }
-
+    public Matrice MatriceRandom(){
+        Matrice m = new Matrice(10, 10);
+        for(int i=0;i<m.getLigne();i++){
+            for(int j=0;j<m.getColonnes();j++){
+                m.setElement(i, j, Math.random()*255);
+            }
+        }
+        m.aff_matrice();
+        return m;
+    }
     
 }
