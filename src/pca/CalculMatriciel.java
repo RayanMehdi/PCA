@@ -335,7 +335,7 @@ public class CalculMatriciel {
         }
         return false;
     }
-    public void to_matrice_image(double ecart_type,double moyenne){
+    public void matrice2image(double ecart_type,double moyenne){
         multiplicate(mvp, ecart_type);
         add(mvp, moyenne);
     }
