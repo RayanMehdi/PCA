@@ -19,7 +19,7 @@ public class Vecteur implements Cloneable{
     
     public void aff_vecteur(){
        for( int i = 0; i < taille; i++){
-           System.out.println("["+i+"] "+vect[i]);
+           System.out.println(vect[i]+", ");
        }
         System.out.println("fin");
     }
@@ -68,13 +68,7 @@ public class Vecteur implements Cloneable{
 		return o;
 	}
     
-    public void random(){
-        Random rn = new Random();
-        int value = rn.nextInt(50 ) + 2;
-        for (int i = 0; i < this.taille; i++) {
-            this.setElement(i, value);
-        }
-    }
+   
     
 
 }
