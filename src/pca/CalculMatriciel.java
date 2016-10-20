@@ -5,7 +5,6 @@
  */
 package pca;
 
-//ajouit dun com juste pour voir
 //Classe eprmettant d'effectuer les calculs
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
