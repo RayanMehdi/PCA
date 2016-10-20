@@ -8,6 +8,7 @@ package pca;
 //Classe eprmettant d'effectuer les calculs
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -150,11 +151,11 @@ public class CalculMatriciel {
         Vecteur test = new Vecteur(v.getTaille());
         double value = 0;
         for (int i = 0; i < test.getTaille(); i++) {
+            value = 0;
             for (int k = 0; k < this.m.getColonnes(); k++) {
-                value += v.getElement(i) * m.getElement(i, k);
+                value += v.getElement(k) * m.getElement(i, k);
             }
             test.setElement(i, value);
-            value = 0;
         }
         return test;
     }
@@ -293,20 +294,28 @@ public class CalculMatriciel {
     public void calcul_plus_grand_vecteur_propre(Vecteur v2) {
         int i = 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
-        vecteur_base.random();
-        System.out.println("vect base");
-        vecteur_base.aff_vecteur();
+        /*
+        System.out.println("Matrice : ");
+        m.aff_matrice();
+         System.out.println("vect base");*/
+        vecteur_base= m.random();
+       
+        //vecteur_base.aff_vecteur();
         v = (Vecteur) vecteur_base.clone();
         v2 = (Vecteur) vecteur_base.clone();
         while ( Math.abs(valeur_propre_2 - valeur_propre) > 0.00000000001 || !vecteur_propre(v2)) {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
+            //System.out.println("v2=");
+            //v2.aff_vecteur();
             v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
-            System.out.println("vp_i="+valeur_propre);
+            //System.out.println("new v=");
+            //v.aff_vecteur();
+            //System.out.println("vp_i="+valeur_propre);
             valeur_propre_2 = produitScalaire(v, v2);
-            System.out.println("vp_i+1="+valeur_propre_2);
-            System.out.println("v2=");
-            v2.aff_vecteur();
+            //System.out.println("vp_i+1="+valeur_propre_2);
+            //System.out.println("v2=");
+            //v2.aff_vecteur();
             i++;
         }
         tabValPropre.add(valeur_propre_2);
@@ -330,4 +339,5 @@ public class CalculMatriciel {
         multiplicate(mvp, ecart_type);
         add(mvp, moyenne);
     }
+    
 }

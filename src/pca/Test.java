@@ -5,6 +5,8 @@
  */
 package pca;
 
+import java.util.Random;
+
 /**
  *
  * @author rayanmehdi1
@@ -38,7 +40,7 @@ public class Test {
         Matrice m=imag.MatriceNoirBlanc();
         
         Vecteur v = new Vecteur(m.getLigne());
-        v.random();
+       // v = m.random();
                 
 
         CalculMatriciel c = new CalculMatriciel(MatriceRandom(), v, 0.9);
@@ -68,10 +70,12 @@ public class Test {
         return mReturn;
     }
     public Matrice MatriceRandom(){
-        Matrice m = new Matrice(10, 10);
+        Random rn = new Random();
+        rn.setSeed(24);
+        Matrice m = new Matrice(5, 5);
         for(int i=0;i<m.getLigne();i++){
             for(int j=0;j<m.getColonnes();j++){
-                m.setElement(i, j, Math.random()*255);
+                m.setElement(i, j, rn.nextDouble()*255);
             }
         }
         m.aff_matrice();
