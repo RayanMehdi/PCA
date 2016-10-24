@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -39,7 +40,7 @@ public class Matrice {
     public void aff_matrice(){
         for(int i = 0; i < this.colonnes; i++){
             for( int j = 0; j < this.lignes; j++){
-                System.out.print(this.matr[j][i]+" | ");
+                System.out.print(this.matr[j][i]+", ");
             }
             System.out.println();
         }
@@ -93,4 +94,14 @@ public class Matrice {
         return matr[ligne][colonne];
     }
     
+    public Vecteur random(){
+        Random rn = new Random();
+        rn.setSeed(124);
+        Vecteur v= new Vecteur(this.getLigne());
+        for (int i = 0; i < this.getLigne(); i++) {
+            double value = rn.nextDouble()*2 - 1;
+            v.setElement(i,value);
+        }
+        return v;
+    }
 }

@@ -5,6 +5,8 @@
  */
 package pca;
 
+import java.util.Random;
+
 /**
  *
  * @author rayanmehdi1
@@ -17,7 +19,7 @@ public class Vecteur implements Cloneable{
     
     public void aff_vecteur(){
        for( int i = 0; i < taille; i++){
-           System.out.println("["+i+"] "+vect[i]);
+           System.out.println(vect[i]+", ");
        }
         System.out.println("fin");
     }
@@ -65,6 +67,8 @@ public class Vecteur implements Cloneable{
 		// on renvoie le clone
 		return o;
 	}
+    
+   
     
 
 }
