@@ -34,6 +34,7 @@ public class Matrice {
             }
         }*/
     }
+   
     
     public void aff_matrice(){
         for(int i = 0; i < this.colonnes; i++){

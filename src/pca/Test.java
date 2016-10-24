@@ -41,8 +41,11 @@ public class Test {
                 for(int i = 0; i < v.getTaille() ; i++){
             v.setElement(i, 1);
         }
+                
+                
+             
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.9);
+        CalculMatriciel c = new CalculMatriciel(MatriceRandom(), v, 0.9);
         c.calcul_valeurpropre();
         //c.affTab();
         //c.getMvp().creerImage();
@@ -68,6 +71,15 @@ public class Test {
         }
         return mReturn;
     }
-
+    public Matrice MatriceRandom(){
+        Matrice m = new Matrice(10, 10);
+        for(int i=0;i<m.getLigne();i++){
+            for(int j=0;j<m.getColonnes();j++){
+                m.setElement(i, j, Math.random()*255);
+            }
+        }
+        m.aff_matrice();
+        return m;
+    }
     
 }
