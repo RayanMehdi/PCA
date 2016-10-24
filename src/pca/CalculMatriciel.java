@@ -58,7 +58,7 @@ public class CalculMatriciel {
     public void calcul_valeurpropre() {//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = (Vecteur) v.clone();
         int i = 0;
-        //m.aff_matrice();
+        m.aff_matrice();
         centrer_reduire();
         this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace(this.m);
@@ -119,7 +119,8 @@ public class CalculMatriciel {
         }
         return z;
     }
-    public Matrice add(Matrice m,  double valeur) {
+
+    public Matrice add(Matrice m, double valeur) {
         Matrice z = new Matrice(m.getLigne(), m.getColonnes());
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m.getColonnes(); j++) {
@@ -128,6 +129,7 @@ public class CalculMatriciel {
         }
         return z;
     }
+
     public Matrice multiplicate(Matrice m, double val) {
         Matrice ret = new Matrice(m.getLigne(), m.getColonnes());
         for (int i = 0; i < m.getColonnes(); i++) {
@@ -266,7 +268,7 @@ public class CalculMatriciel {
             this.tabMoyenne.add(moy);
             this.tabEcartType.add(ec);
             /*System.out.println("moy"+j+" = "+moy);
-            System.out.println("ec"+j+" = "+ec);*/
+             System.out.println("ec"+j+" = "+ec);*/
             if (ec != 0) {
                 for (int i = 0; i < this.m.getLigne(); i++) {
                     new_value = (this.m.getElement(i, j) - moy) / ec;
@@ -310,11 +312,11 @@ public class CalculMatriciel {
         int i = 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
         /*
-        System.out.println("Matrice : ");
-        m.aff_matrice();
+         System.out.println("Matrice : ");
+         m.aff_matrice();
          System.out.println("vect base");*/
-        vecteur_base= m.random();
-       
+        vecteur_base = m.random();
+
         //vecteur_base.aff_vecteur();
         v = (Vecteur) vecteur_base.clone();
         v.setElement(0, 40);
@@ -337,7 +339,7 @@ public class CalculMatriciel {
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
        // System.out.println("nb ite" + i);
-       // System.out.println(valeur_propre_2);
+        // System.out.println(valeur_propre_2);
 
     }
 
@@ -351,47 +353,50 @@ public class CalculMatriciel {
         }
         return false;
     }
-    public void matrice2image(){
+
+    public void matrice2image() {
         double new_value = 0;
         for (int j = 0; j < this.m.getColonnes(); j++) {
             /*System.out.println("moy"+j+" = "+moy);
-            System.out.println("ec"+j+" = "+ec);*/
-            if (tabEcartType.get(j) != 0) {
-                for (int i = 0; i < this.mvp.getLigne(); i++) {
-                    //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
-                    new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
-                    
-                    //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
-                    this.mvp.setElement(i, j, new_value);
-                }
-            } else {
-                for (int i = 0; i < this.mvp.getLigne(); i++) {
-                    new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j));
-                    this.mvp.setElement(i, j, new_value);
+             System.out.println("ec"+j+" = "+ec);*/
+            if (this.mvp.getElement(0, j) != 0) {
+                if (tabEcartType.get(j) != 0) {
+                    for (int i = 0; i < this.mvp.getLigne(); i++) {
+                        //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
+                        new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
+
+                        //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
+                        this.mvp.setElement(i, j, new_value);
+                    }
+                } else {
+                    for (int i = 0; i < this.mvp.getLigne(); i++) {
+                        new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j));
+                        this.mvp.setElement(i, j, new_value);
+                    }
                 }
             }
         }
         //il faut ajouté la moyenne et multiplé par l'ec de la colonne
         /*multiplicate(mvp, ecart_type);
-        add(mvp, moyenne);*/
+         add(mvp, moyenne);*/
         //remplir_zéro(mvp);
         mvp.aff_matrice();
     }
-    
-    public void remplir_zéro(Matrice m){
+
+    public void remplir_zéro(Matrice m) {
         Matrice m_new = new Matrice(this.m.getColonnes(), this.m.getColonnes());
         for (int i = 0; i < this.m.getColonnes(); i++) {
             for (int j = 0; j < this.m.getLigne(); j++) {
                 m_new.setElement(i, j, 0);
             }
-            
+
         }
-        
+
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m.getColonnes(); j++) {
                 m_new.setElement(i, j, m.getElement(i, j));
             }
         }
     }
-    
+
 }

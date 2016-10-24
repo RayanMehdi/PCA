@@ -43,7 +43,7 @@ public class Test {
        // v = m.random();
                 
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.1);
+        CalculMatriciel c = new CalculMatriciel(m, v, 1);
         c.calcul_valeurpropre();
         //c.affTab();
         //c.getMvp().creerImage();
