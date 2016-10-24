@@ -357,14 +357,17 @@ public class CalculMatriciel {
             /*System.out.println("moy"+j+" = "+moy);
             System.out.println("ec"+j+" = "+ec);*/
             if (tabEcartType.get(j) != 0) {
-                for (int i = 0; i < this.m.getLigne(); i++) {
-                    new_value = (this.m.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
-                    this.m.setElement(i, j, new_value);
+                for (int i = 0; i < this.mvp.getLigne(); i++) {
+                    //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
+                    new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
+                    
+                    System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
+                    this.mvp.setElement(i, j, new_value);
                 }
             } else {
-                for (int i = 0; i < this.m.getLigne(); i++) {
-                    new_value = (this.m.getElement(i, j) + tabMoyenne.get(j));
-                    this.m.setElement(i, j, new_value);
+                for (int i = 0; i < this.mvp.getLigne(); i++) {
+                    new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j));
+                    this.mvp.setElement(i, j, new_value);
                 }
             }
         }
