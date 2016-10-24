@@ -74,9 +74,11 @@ public class CalculMatriciel {
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp = cree_matrice_vect_propre();
         this.mvp = multiplicate(this.m, this.mvp);
-        //matrice2image(ecart_type(), trace);
+        System.out.println("MATRICE 2 IMAGE");
+        matrice2image();
+        System.out.println("MATRICE 3 IMAGE");
         this.mvp.creerImage();
-        this.mvp.aff_matrice();
+        //this.mvp.aff_matrice();
         //matrice2image(trace, trace);
 
     }
@@ -263,8 +265,8 @@ public class CalculMatriciel {
             double ec = ecart_type(j);
             this.tabMoyenne.add(moy);
             this.tabEcartType.add(ec);
-            System.out.println("moy"+j+" = "+moy);
-            System.out.println("ec"+j+" = "+ec);
+            /*System.out.println("moy"+j+" = "+moy);
+            System.out.println("ec"+j+" = "+ec);*/
             if (ec != 0) {
                 for (int i = 0; i < this.m.getLigne(); i++) {
                     new_value = (this.m.getElement(i, j) - moy) / ec;
@@ -334,8 +336,8 @@ public class CalculMatriciel {
         }
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
-        System.out.println("nb ite" + i);
-        System.out.println(valeur_propre_2);
+       // System.out.println("nb ite" + i);
+       // System.out.println(valeur_propre_2);
 
     }
 
@@ -349,9 +351,26 @@ public class CalculMatriciel {
         }
         return false;
     }
-    public void matrice2image(double ecart_type,double moyenne){
-        multiplicate(mvp, ecart_type);
-        add(mvp, moyenne);
+    public void matrice2image(){
+        double new_value = 0;
+        for (int j = 0; j < this.m.getColonnes(); j++) {
+            /*System.out.println("moy"+j+" = "+moy);
+            System.out.println("ec"+j+" = "+ec);*/
+            if (tabEcartType.get(j) != 0) {
+                for (int i = 0; i < this.m.getLigne(); i++) {
+                    new_value = (this.m.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
+                    this.m.setElement(i, j, new_value);
+                }
+            } else {
+                for (int i = 0; i < this.m.getLigne(); i++) {
+                    new_value = (this.m.getElement(i, j) + tabMoyenne.get(j));
+                    this.m.setElement(i, j, new_value);
+                }
+            }
+        }
+        //il faut ajouté la moyenne et multiplé par l'ec de la colonne
+        /*multiplicate(mvp, ecart_type);
+        add(mvp, moyenne);*/
         //remplir_zéro(mvp);
         mvp.aff_matrice();
     }
