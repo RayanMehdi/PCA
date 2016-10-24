@@ -51,16 +51,15 @@ public class Matrice {
         try{
         
         
-        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, 3);
+        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_INT_RGB);
         
         for(int x = 0; x < this.lignes; x++) {
             for(int y = 0; y < this.colonnes; y++) {
-                    //Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
-                    //int rgb = col.getRGB();
+                    Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
+                    int rgb = col.getRGB();
                     
-                    int rgb = (int)this.matr[x][y];
-                    
-                    //b.setRGB(y, x, rgb);
+                    //int rgb = (int)this.matr[x][y];
+                    b.setRGB(y, x, rgb);
                     
             }
         }

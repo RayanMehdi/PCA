@@ -361,7 +361,7 @@ public class CalculMatriciel {
                     //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
                     new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
                     
-                    System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
+                    //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
                     this.mvp.setElement(i, j, new_value);
                 }
             } else {
