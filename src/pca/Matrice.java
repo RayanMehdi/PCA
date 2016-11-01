@@ -51,24 +51,30 @@ public class Matrice implements Cloneable {
         try{
         
         //TYPE_INT_RGB or TYPE_BYTE_GRAY
-        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_BYTE_GRAY);
-        
+        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_INT_BGR);
+        int[] pixels = new int[this.lignes * this.colonnes];
         for(int x = 0; x < this.lignes; x++) {
             for(int y = 0; y < this.colonnes; y++) {
+                
+                               
                 if (this.matr[x][y] < 0) {
                     this.matr[x][y] = this.matr[x][y] * -1;
                 }
-                this.matr[x][y] = this.matr[x][y]%1;
-                    //Color col = new Color((float)this.matr[x][y], (float)this.matr[x][y] , (float)this.matr[x][y]);
-                    Color col = new Color((int)this.matr[x][y]);
+                //this.matr[x][y] = this.matr[x][y]%255;
+                pixels[y*colonnes + x] = new Color((int)this.matr[x][y]).getRGB();
+                /*
+                    Color col = new Color((float)this.matr[x][y], (float)this.matr[x][y] , (float)this.matr[x][y]);
+                    //Color col = new Color((int)this.matr[x][y]);
                     int rgb = col.getRGB();
                     System.out.println(rgb);
                     
                     //int rgb = (int)this.matr[x][y];
-                    b.setRGB(y, x, rgb);
+                    b.setRGB(y, x, rgb);*/
                     
             }
         }
+            System.out.println("COlor " + Color.RED.getRGB());
+        b.setRGB(0, 0, lignes, colonnes, pixels, 0, lignes);
         ImageIO.write(b, "png", new File("test.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
