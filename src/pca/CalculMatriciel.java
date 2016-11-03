@@ -70,6 +70,7 @@ public class CalculMatriciel {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
             i++;
+            System.out.println("SUMTAB"+sumTab());
 
         }
         System.out.println("Nombre vecteur = " + i);
@@ -337,7 +338,11 @@ public class CalculMatriciel {
         v = (Vecteur) vecteur_base.clone();
         v.setElement(0, 40);
         v2 = (Vecteur) vecteur_base.clone();
-        while (Math.abs(valeur_propre_2 - valeur_propre) > 0 && !vecteur_propre(v2)) {
+        
+        // this.m*v - valeur_propre*v --> norme environ = à 0
+        
+        
+        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 /*&& !vecteur_propre(v2)*/) {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
             //System.out.println("v2=");
