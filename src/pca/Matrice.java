@@ -51,7 +51,7 @@ public class Matrice implements Cloneable {
         try{
         
         //TYPE_INT_RGB or TYPE_BYTE_GRAY
-        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_INT_BGR);
+        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_INT_ARGB);
         int[] pixels = new int[this.lignes * this.colonnes];
         for(int x = 0; x < this.lignes; x++) {
             for(int y = 0; y < this.colonnes; y++) {
