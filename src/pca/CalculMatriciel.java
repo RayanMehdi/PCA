@@ -75,6 +75,7 @@ public class CalculMatriciel {
         System.out.println("Nombre vecteur = " + i);
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp = cree_matrice_vect_propre();
+        this.mvp = multiplicate(this.mvp,transposition(this.mvp));
         this.mvp = multiplicate(this.mdebase, this.mvp);
         System.out.println("MATRICE 2 IMAGE");
         matrice2image();
@@ -188,10 +189,17 @@ public class CalculMatriciel {
     }
 
     public Matrice cree_matrice_vect_propre() {
-        Matrice mvp = new Matrice(this.tabVectPropre.get(0).getTaille(), this.tabVectPropre.size());
+        Matrice mvp = new Matrice(mdebase.getLigne(), mdebase.getColonnes());
         for (int j = 0; j < mvp.getColonnes(); j++) {
             for (int k = 0; k < mvp.getLigne(); k++) {
-                mvp.setElement(k, j, tabVectPropre.get(j).getElement(k));
+                mvp.setElement(k, j, 0);
+            }
+        }
+        
+        
+        for (int j = 0; j < mvp.getColonnes(); j++) {
+            for (int k = 0; k < tabVectPropre.size(); k++) {
+                mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
         mvp.aff_matrice();

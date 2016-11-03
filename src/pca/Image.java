@@ -38,9 +38,9 @@ public class Image {
         for(int colonne = 0; colonne < largeurImage; colonne++){
             for(int ligne = 0; ligne < hauteurImage; ligne++){
                 
-                couleur = new Color(image.getRGB(colonne, ligne), false);
+                couleur = new Color(image.getRGB(ligne, colonne), false);
                 // Traitement ici
-                System.out.print(image.getRGB(colonne, ligne)+" | ");
+                System.out.print(image.getRGB(ligne, colonne)+" | ");
                 //System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
                 matrix.setElement(ligne, colonne, couleur.getRed());
                 //matrix.setElement(ligne, colonne, couleur.getRGB());
