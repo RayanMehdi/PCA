@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  *
  * @author rayanmehdi1
  */
-public class Matrice {
+public class Matrice implements Cloneable {
     //Attributs
     private int lignes;
     private int colonnes;
@@ -50,13 +50,19 @@ public class Matrice {
         
         try{
         
-        
-        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_INT_RGB);
+        //TYPE_INT_RGB or TYPE_BYTE_GRAY
+        BufferedImage b = new BufferedImage(this.lignes, this.colonnes, BufferedImage.TYPE_BYTE_GRAY);
         
         for(int x = 0; x < this.lignes; x++) {
             for(int y = 0; y < this.colonnes; y++) {
-                    Color col = new Color((int)this.matr[x][y], (int)this.matr[x][y], (int)this.matr[x][y]);
+                if (this.matr[x][y] < 0) {
+                    this.matr[x][y] = this.matr[x][y] * -1;
+                }
+                this.matr[x][y] = this.matr[x][y]%1;
+                    //Color col = new Color((float)this.matr[x][y], (float)this.matr[x][y] , (float)this.matr[x][y]);
+                    Color col = new Color((int)this.matr[x][y]);
                     int rgb = col.getRGB();
+                    System.out.println(rgb);
                     
                     //int rgb = (int)this.matr[x][y];
                     b.setRGB(y, x, rgb);
@@ -103,4 +109,19 @@ public class Matrice {
         }
         return v;
     }
+    
+        public Object clone() {
+		Object o = null;
+		try {
+			// On récupère l'instance à renvoyer par l'appel de la 
+			// méthode super.clone()
+			o = super.clone();
+		} catch(CloneNotSupportedException cnse) {
+			// Ne devrait jamais arriver car nous implémentons 
+			// l'interface Cloneable
+			cnse.printStackTrace(System.err);
+		}
+		// on renvoie le clone
+		return o;
+	}
 }
