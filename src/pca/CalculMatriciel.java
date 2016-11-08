@@ -129,6 +129,18 @@ public class CalculMatriciel {
         }
         return z;
     }
+    
+    public Vecteur sub(Vecteur v, Vecteur v2){
+        Vecteur v_r = new Vecteur(v.getTaille());
+        if( v.getTaille() != v2.getTaille())
+            return null;
+        else{
+            for (int i = 0; i < v.getTaille(); i++) {
+                v_r.setElement(i, v.getElement(i) - v2.getElement(i));
+            }
+        }
+        return v_r;
+    }
 
     public Matrice add(Matrice m, double valeur) {
         Matrice z = new Matrice(m.getLigne(), m.getColonnes());
