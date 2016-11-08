@@ -70,12 +70,20 @@ public class CalculMatriciel {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
             i++;
+            System.out.println("SUMTAB"+sumTab());
 
         }
         System.out.println("Nombre vecteur = " + i);
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp = cree_matrice_vect_propre();
+        this.mvp = multiplicate(this.mvp,transposition(this.mvp));
+        System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
+        this.mvp.aff_matrice();
+        
         this.mvp = multiplicate(this.mdebase, this.mvp);
+        System.out.println("MATRICE VECTEUR PROPRE x MDEBASE :");
+        this.mvp.aff_matrice();
+        
         System.out.println("MATRICE 2 IMAGE");
         matrice2image();
         System.out.println("MATRICE 3 IMAGE");
@@ -188,10 +196,17 @@ public class CalculMatriciel {
     }
 
     public Matrice cree_matrice_vect_propre() {
-        Matrice mvp = new Matrice(this.tabVectPropre.get(0).getTaille(), this.tabVectPropre.size());
+        Matrice mvp = new Matrice(mdebase.getLigne(), mdebase.getColonnes());
         for (int j = 0; j < mvp.getColonnes(); j++) {
             for (int k = 0; k < mvp.getLigne(); k++) {
-                mvp.setElement(k, j, tabVectPropre.get(j).getElement(k));
+                mvp.setElement(k, j, 0);
+            }
+        }
+        
+        
+        for (int j = 0; j < mvp.getColonnes(); j++) {
+            for (int k = 0; k < tabVectPropre.size(); k++) {
+                mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
         mvp.aff_matrice();
@@ -323,7 +338,11 @@ public class CalculMatriciel {
         v = (Vecteur) vecteur_base.clone();
         v.setElement(0, 40);
         v2 = (Vecteur) vecteur_base.clone();
-        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000000001 /*|| !vecteur_propre(v2)*/) {
+        
+        // this.m*v - valeur_propre*v --> norme environ = à 0
+        
+        
+        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 /*&& !vecteur_propre(v2)*/) {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
             //System.out.println("v2=");
@@ -336,10 +355,12 @@ public class CalculMatriciel {
             //System.out.println("vp_i+1="+valeur_propre_2);
             //System.out.println("v2=");
             //v2.aff_vecteur();
-            i++;
+            System.out.println("v1 " + valeur_propre + " v2 " + valeur_propre_2);
+            System.out.println(vecteur_propre(v2));
         }
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
+        //System.out.println(vecteur_propre(v2));
        // System.out.println("nb ite" + i);
         // System.out.println(valeur_propre_2);
 
@@ -359,8 +380,7 @@ public class CalculMatriciel {
     public void matrice2image() {
         double new_value = 0;
         for (int j = 0; j < this.m.getColonnes(); j++) {
-            if (this.mvp.getElement(0, j) != 0) {
-                if (tabEcartType.get(j) != 0) {
+            
                     for (int i = 0; i < this.mvp.getLigne(); i++) {
                         //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
                         new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
@@ -368,13 +388,8 @@ public class CalculMatriciel {
                         //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
                         this.mvp.setElement(i, j, new_value);
                     }
-                } else {
-                    for (int i = 0; i < this.mvp.getLigne(); i++) {
-                        new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j));
-                        this.mvp.setElement(i, j, new_value);
-                    }
-                }
-            }
+               
+            
         }
         mvp.aff_matrice();
     }
