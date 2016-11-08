@@ -232,6 +232,14 @@ public class CalculMatriciel {
         mvp.aff_matrice();
         return mvp;
     }
+    
+    public double norme_vecteur(Vecteur v){
+        double norme = 0;
+        for (int i = 0; i < v.getTaille(); i++) {
+            norme += v.getElement(i) * v.getElement(i);
+        }
+        return Math.sqrt(norme);
+    }
 
     public Vecteur normalise(Vecteur v) {
         double norme = 0;
@@ -361,8 +369,8 @@ public class CalculMatriciel {
         
         // this.m*v - valeur_propre*v --> norme environ = à 0
         
-        
-        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 /*&& !vecteur_propre(v2)*/) {
+        System.out.println();
+        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, this.m), multiplicate(v2, valeur_propre))) < 0.01)/*&& !vecteur_propre(v2)*/ {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
             //System.out.println("v2=");
@@ -375,9 +383,9 @@ public class CalculMatriciel {
             //System.out.println("vp_i+1="+valeur_propre_2);
             //System.out.println("v2=");
             //v2.aff_vecteur();
-            System.out.println("v1 " + valeur_propre + " v2 " + valeur_propre_2);
-            System.out.println(vecteur_propre(v2));
+            //System.out.println("v1 " + valeur_propre + " v2 " + valeur_propre_2);
         }
+        System.out.println("VAL : " + norme_vecteur(sub(multiplicate(v2, this.mdebase), multiplicate(v, valeur_propre))) + " Val propre : " + valeur_propre_2);
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
         //System.out.println(vecteur_propre(v2));
