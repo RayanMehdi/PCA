@@ -109,9 +109,9 @@ public class Matrice implements Cloneable {
         Random rn = new Random();
         //rn.setSeed(124);
         Vecteur v= new Vecteur(this.getLigne());
+        int li = rn.nextInt(this.getLigne());
         for (int i = 0; i < this.getLigne(); i++) {
-            double value = rn.nextDouble()*2 - 1;
-            v.setElement(i,value);
+            v.setElement(i,this.getElement(i, li));
         }
         return v;
     }
