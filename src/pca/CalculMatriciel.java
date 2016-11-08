@@ -139,6 +139,14 @@ public class CalculMatriciel {
         }
         return z;
     }
+    
+    public Vecteur multiplicate( Vecteur v, double val){
+        Vecteur v_r = new Vecteur(v.getTaille());
+        for (int i = 0; i < v.getTaille(); i++) {
+            v_r.setElement(i, val * v.getElement(i));
+        }
+        return v_r;
+    }
 
     public Matrice multiplicate(Matrice m, double val) {
         Matrice ret = new Matrice(m.getLigne(), m.getColonnes());
