@@ -56,7 +56,7 @@ public class CalculMatriciel {
      des valeurs propres. Si 90% de la somme de ces valeurs propres est atteinte 
      (trace = 100% des valeurs propres)
      */
-    public void calcul_valeurpropre() {//permet de calculer le vecteur propre et la valeur propre de la matrice
+    public Matrice calcul_valeurpropre() {//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = (Vecteur) v.clone();
         int i = 0;
         //m.aff_matrice();
@@ -64,13 +64,12 @@ public class CalculMatriciel {
         mdebase = (Matrice) m.clone();
         this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace(this.m);
-        System.out.println("trace : " + trace);
+        //System.out.println("trace : " + trace);
         //m.aff_matrice();
         while (sumTab() <= trace * pourcentageTrace) {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
             i++;
-            System.out.println("SUMTAB"+sumTab());
 
         }
         System.out.println("Nombre vecteur = " + i);
@@ -91,7 +90,7 @@ public class CalculMatriciel {
         //System.out.println("MATRICE 2 IMAGE");
         matrice2image();
         //System.out.println("MATRICE 3 IMAGE");
-        this.mvp.creerImage();
+        return this.mvp;
         //this.mvp.aff_matrice();
         //matrice2image(trace, trace);
 

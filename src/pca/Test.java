@@ -5,7 +5,12 @@
  */
 package pca;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -18,34 +23,25 @@ public class Test {
 
     public Test(){
         
-        Matrice m1 = new Matrice(3, 3);
-        for( int i = 0; i < m1.getColonnes(); i++ ){
-               for( int j = 0; j < m1.getLigne(); j++ ){
-                   m1.setElement(j, i, 2);
-               }
-        }
-        Matrice m2 = new Matrice(3, 3);
+       
+        Matrice mR=imag.toMatrice('R');
+        Matrice mG=imag.toMatrice('G');
+        Matrice mB=imag.toMatrice('B');
+        Vecteur v = new Vecteur(mR.getLigne());
         
-        m2.setElement(0, 0, 1);
-        m2.setElement(1, 0, 4);
-        m2.setElement(0, 1, 4);
-        m2.setElement(2, 0, 5);
-        m2.setElement(0, 2, 5);
-        m2.setElement(1, 2, 6);
-        m2.setElement(2, 1, 6);
-        m2.setElement(1, 1, 2);
-        m2.setElement(2, 2, 3);
-        
-        m1 = multiplicate(m1,m2);
-        
-        Matrice m=imag.MatriceNoirBlanc();
-        
-        Vecteur v = new Vecteur(m.getLigne());
        // v = m.random();
                 
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.999);
-        c.calcul_valeurpropre();
+        CalculMatriciel cR = new CalculMatriciel(mR, v, 0.999);
+        CalculMatriciel cG = new CalculMatriciel(mG, v, 0.999);
+        CalculMatriciel cB = new CalculMatriciel(mG, v, 0.999);
+        //mR=(Matrice) cR.calcul_valeurpropre().clone();
+        //mG=(Matrice) cG.calcul_valeurpropre().clone();
+        //mB=(Matrice) cB.calcul_valeurpropre().clone();
+        
+        creerImage(cR.calcul_valeurpropre(), cG.calcul_valeurpropre(), cB.calcul_valeurpropre());
+        
+        
         //c.affTab();
         //c.getMvp().creerImage();
         
@@ -83,4 +79,62 @@ public class Test {
         return m;
     }
     
+    
+    
+    
+    public void creerImage(Matrice R,Matrice G,Matrice B){
+        
+        try{
+        
+        //TYPE_INT_RGB or TYPE_BYTE_GRAY
+        BufferedImage b = new BufferedImage(R.getLigne(), R.getColonnes(), BufferedImage.TYPE_INT_RGB);
+        int[] pixels = new int[R.getLigne() * R.getColonnes()];
+        for(int x = 0; x < R.getLigne(); x++) {
+            for(int y = 0; y < R.getColonnes(); y++) {
+                
+                               
+                if (R.getElement(x, y) < 0) {
+                    R.setElement(x, y,R.getElement(x, y) * -1);
+                }
+                if (G.getElement(x, y) < 0) {
+                    G.setElement(x, y,G.getElement(x, y) * -1);
+                }
+                if (B.getElement(x, y) < 0) {
+                    B.setElement(x, y,B.getElement(x, y) * -1);
+                }
+                if (R.getElement(x, y) > 255) {
+                    R.setElement(x, y,255);
+                }
+                if (G.getElement(x, y) > 255) {
+                    G.setElement(x, y,255);
+                }
+                if (B.getElement(x, y) > 255) {
+                    B.setElement(x, y,255);
+                }
+                //this.matr[x][y] = this.matr[x][y]%255;
+                System.out.println("Rouge :"+R.getElement(x, y));
+                System.out.println("vert :"+G.getElement(x, y));
+                System.out.println("bleu :"+B.getElement(x, y));
+                pixels[y*R.getColonnes() + x] = new Color((int) R.getElement(x, y),(int) G.getElement(x, y),(int) B.getElement(x, y)).getRGB();
+                
+                /*
+                    Color col = new Color((float)this.matr[x][y], (float)this.matr[x][y] , (float)this.matr[x][y]);
+                    //Color col = new Color((int)this.matr[x][y]);
+                    int rgb = col.getRGB();
+                    System.out.println(rgb);
+                    
+                    //int rgb = (int)this.matr[x][y];
+                    b.setRGB(y, x, rgb);*/
+                    
+            }
+        }
+            //System.out.println("COlor " + Color.RED.getRGB());
+        b.setRGB(0, 0, R.getLigne(), R.getColonnes(), pixels, 0, R.getLigne());
+        ImageIO.write(b, "png", new File("test.png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+	}
+       
+        
+    }
 }

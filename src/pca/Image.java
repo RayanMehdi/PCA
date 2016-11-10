@@ -24,7 +24,7 @@ public class Image {
         this.nomFichier=nom;
     }
     
-    public Matrice MatriceNoirBlanc(){
+    public Matrice toMatrice(char c){
         try {
         BufferedImage image = ImageIO.read(new File(this.nomFichier));
          
@@ -40,9 +40,23 @@ public class Image {
                 
                 couleur = new Color(image.getRGB(ligne, colonne), false);
                 // Traitement ici
-                System.out.print(image.getRGB(ligne, colonne)+" | ");
+                //System.out.print(image.getRGB(ligne, colonne)+" | ");
                 //System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
-                matrix.setElement(ligne, colonne, couleur.getRed());
+                switch(c){
+                    case 'R':
+                        matrix.setElement(ligne, colonne, couleur.getRed());
+                        break;
+                    case 'G':
+                        matrix.setElement(ligne, colonne, couleur.getGreen());
+                        break;
+                    case 'B':
+                        matrix.setElement(ligne, colonne, couleur.getBlue());
+                        break;
+                }
+                
+                
+               
+                
                 //matrix.setElement(ligne, colonne, couleur.getRGB());
                 
             }
