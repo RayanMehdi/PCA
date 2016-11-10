@@ -40,7 +40,7 @@ public class Matrice implements Cloneable {
     public void aff_matrice(){
         for(int i = 0; i < this.colonnes; i++){
             for( int j = 0; j < this.lignes; j++){
-                System.out.print(this.matr[j][i]+", ");
+                System.out.print(this.matr[i][j]+", ");
             }
             System.out.println();
         }

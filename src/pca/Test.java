@@ -13,6 +13,7 @@ import java.util.Random;
  */
 public class Test {
 
+    //test10.png pour une image 10x10
     Image imag = new Image("sans.png");
 
     public Test(){
@@ -43,7 +44,7 @@ public class Test {
        // v = m.random();
                 
 
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.9);
+        CalculMatriciel c = new CalculMatriciel(m, v, 0.999);
         c.calcul_valeurpropre();
         //c.affTab();
         //c.getMvp().creerImage();

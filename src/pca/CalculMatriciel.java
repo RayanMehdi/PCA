@@ -80,10 +80,12 @@ public class CalculMatriciel {
         
         //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
         //this.mvp.aff_matrice();
-        Matrice tamere = (Matrice) this.mvp.clone();
-        this.mvp = multiplicate(this.mdebase, this.mvp);
-        this.mvp = multiplicate(this.mvp,transposition(tamere));
-        //System.out.println("MATRICE VECTEUR PROPRE x MDEBASE :");
+        this.mvp = multiplicate(transposition(mvp), this.mvp);
+        System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
+        
+        
+       // this.mvp = multiplicate(this.mdebase, this.mvp);
+       this.mvp = multiplicate(this.mdebase, this.mvp);
         //this.mvp.aff_matrice();
         
         //System.out.println("MATRICE 2 IMAGE");
