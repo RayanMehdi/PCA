@@ -59,7 +59,7 @@ public class CalculMatriciel {
     public void calcul_valeurpropre() {//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = (Vecteur) v.clone();
         int i = 0;
-        m.aff_matrice();
+        //m.aff_matrice();
         centrer_reduire(m);
         mdebase = (Matrice) m.clone();
         this.m = multiplicate(this.m, transposition(this.m));
@@ -76,17 +76,21 @@ public class CalculMatriciel {
         System.out.println("Nombre vecteur = " + i);
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp = cree_matrice_vect_propre();
-        this.mvp = multiplicate(this.mvp,transposition(this.mvp));
+        //this.mvp = multiplicate(this.mvp,transposition(this.mvp));
+        
+        //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
+        //this.mvp.aff_matrice();
+        this.mvp = multiplicate(transposition(mvp), this.mvp);
         System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
-        this.mvp.aff_matrice();
         
-        this.mvp = multiplicate(this.mdebase, this.mvp);
-        System.out.println("MATRICE VECTEUR PROPRE x MDEBASE :");
-        this.mvp.aff_matrice();
         
-        System.out.println("MATRICE 2 IMAGE");
+       // this.mvp = multiplicate(this.mdebase, this.mvp);
+       this.mvp = multiplicate(this.mdebase, this.mvp);
+        //this.mvp.aff_matrice();
+        
+        //System.out.println("MATRICE 2 IMAGE");
         matrice2image();
-        System.out.println("MATRICE 3 IMAGE");
+        //System.out.println("MATRICE 3 IMAGE");
         this.mvp.creerImage();
         //this.mvp.aff_matrice();
         //matrice2image(trace, trace);
@@ -198,10 +202,8 @@ public class CalculMatriciel {
 
     public Matrice multiplicate(Matrice m, Matrice m2) {
         Matrice mReturn = new Matrice(m.getLigne(), m.getColonnes());
-        double somme = 0;
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m2.getColonnes(); j++) {
-                somme = 0;
                 for (int k = 0; k < m.getColonnes(); k++) {
                     mReturn.setElement(i, j, mReturn.getElement(i, j) + m.getElement(i, k) * m2.getElement(k, j));
                     //somme += m.getElement(i, k) * m2.getElement(k, j);
@@ -209,7 +211,6 @@ public class CalculMatriciel {
                 }
                 //System.out.println("PROUT " + mReturn.getElement(i, j));
                 //mReturn.setElement(i, j, somme);
-                somme = 0;
             }
         }
         return mReturn;
@@ -368,9 +369,9 @@ public class CalculMatriciel {
         v2 = (Vecteur) vecteur_base.clone();
         
         // this.m*v - valeur_propre*v --> norme environ = à 0
-        
         System.out.println();
-        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, this.m), multiplicate(v2, valeur_propre))) < 0.01)/*&& !vecteur_propre(v2)*/ {
+        do{
+        /*&& !vecteur_propre(v2)*/ 
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
             //System.out.println("v2=");
@@ -384,8 +385,9 @@ public class CalculMatriciel {
             //System.out.println("v2=");
             //v2.aff_vecteur();
             //System.out.println("v1 " + valeur_propre + " v2 " + valeur_propre_2);
-        }
-        System.out.println("VAL : " + norme_vecteur(sub(multiplicate(v2, this.mdebase), multiplicate(v, valeur_propre))) + " Val propre : " + valeur_propre_2);
+        }while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, valeur_propre_2), multiplicate(v2, this.m))) > 0.00000001);
+        /*System.out.println(" 1er multi ");multiplicate(v2, valeur_propre_2).aff_vecteur();
+        System.out.println(" 2éme multi ______");multiplicate(v2, this.m).aff_vecteur();*/
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
         //System.out.println(vecteur_propre(v2));
@@ -419,7 +421,7 @@ public class CalculMatriciel {
                
             
         }
-        mvp.aff_matrice();
+        //mvp.aff_matrice();
     }
     
     /*public void matrice2image() {
