@@ -52,6 +52,9 @@ public class Image {
                     case 'B':
                         matrix.setElement(ligne, colonne, couleur.getBlue());
                         break;
+                    case 'M':
+                        matrix.setElement(ligne, colonne, couleur.getRGB());
+                        break;
                 }
                 
                 
