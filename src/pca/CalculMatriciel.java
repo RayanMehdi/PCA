@@ -72,7 +72,7 @@ public class CalculMatriciel {
             i++;
 
         }
-        System.out.println("Nombre vecteur = " + i);
+        //System.out.println("Nombre vecteur = " + i);
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp = cree_matrice_vect_propre();
         //this.mvp = multiplicate(this.mvp,transposition(this.mvp));
@@ -80,7 +80,7 @@ public class CalculMatriciel {
         //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
         //this.mvp.aff_matrice();
         this.mvp = multiplicate(transposition(mvp), this.mvp);
-        System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
+        //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
         
         
        // this.mvp = multiplicate(this.mdebase, this.mvp);
@@ -229,7 +229,7 @@ public class CalculMatriciel {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
-        mvp.aff_matrice();
+        //mvp.aff_matrice();
         return mvp;
     }
     
