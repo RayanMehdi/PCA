@@ -31,7 +31,7 @@ public class Test {
         
        // v = m.random();
                 
-        double val=0.99999999999;
+        double val=0.999;
         CalculMatriciel cR = new CalculMatriciel(mR, v, val);
         CalculMatriciel cG = new CalculMatriciel(mG, v, val);
         CalculMatriciel cB = new CalculMatriciel(mB, v, val);
