@@ -31,7 +31,7 @@ public class Test {
         
        // v = m.random();
                 
-        double val=0.3;
+        double val=0.99999999999;
         CalculMatriciel cR = new CalculMatriciel(mR, v, val);
         CalculMatriciel cG = new CalculMatriciel(mG, v, val);
         CalculMatriciel cB = new CalculMatriciel(mB, v, val);
@@ -112,9 +112,9 @@ public class Test {
                     B.setElement(x, y,255);
                 }
                 //this.matr[x][y] = this.matr[x][y]%255;
-                System.out.println("Rouge :"+R.getElement(x, y));
-                System.out.println("vert :"+G.getElement(x, y));
-                System.out.println("bleu :"+B.getElement(x, y));
+                //System.out.println("Rouge :"+R.getElement(x, y));
+                //System.out.println("vert :"+G.getElement(x, y));
+                //System.out.println("bleu :"+B.getElement(x, y));
                 pixels[y*R.getColonnes() + x] = new Color((int) R.getElement(x, y),(int) G.getElement(x, y),(int) B.getElement(x, y)).getRGB();
                 
                 /*
