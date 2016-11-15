@@ -60,7 +60,7 @@ public class Image {
                 //matrix.setElement(ligne, colonne, couleur.getRGB());
                 
             }
-            //System.out.println("");
+            
         }
     } catch (FileNotFoundException e) {
         e.printStackTrace();
@@ -92,7 +92,7 @@ public class Image {
                 //System.out.print(couleur.getRed()+" "+couleur.getGreen()+" "+couleur.getBlue()+" | ");
                 
             }
-            System.out.println("");
+            
         }
     } catch (FileNotFoundException e) {
         e.printStackTrace();

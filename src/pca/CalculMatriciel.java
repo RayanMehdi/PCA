@@ -368,7 +368,7 @@ public class CalculMatriciel {
         v2 = (Vecteur) vecteur_base.clone();
         
         // this.m*v - valeur_propre*v --> norme environ = à 0
-        System.out.println();
+        
         do{
         /*&& !vecteur_propre(v2)*/ 
             valeur_propre = valeur_propre_2;

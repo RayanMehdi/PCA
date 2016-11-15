@@ -31,10 +31,10 @@ public class Test {
         
        // v = m.random();
                 
-
-        CalculMatriciel cR = new CalculMatriciel(mR, v, 0.999);
-        CalculMatriciel cG = new CalculMatriciel(mG, v, 0.999);
-        CalculMatriciel cB = new CalculMatriciel(mG, v, 0.999);
+        double val=0.3;
+        CalculMatriciel cR = new CalculMatriciel(mR, v, val);
+        CalculMatriciel cG = new CalculMatriciel(mG, v, val);
+        CalculMatriciel cB = new CalculMatriciel(mB, v, val);
         //mR=(Matrice) cR.calcul_valeurpropre().clone();
         //mG=(Matrice) cG.calcul_valeurpropre().clone();
         //mB=(Matrice) cB.calcul_valeurpropre().clone();
