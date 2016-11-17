@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 public class Test {
 
     //test10.png pour une image 10x10
-    Image imag = new Image("sans.png");
+    Image imag = new Image("exemple.jpg");
 
     public Test(){
         
@@ -31,15 +31,13 @@ public class Test {
         
        // v = m.random();
                 
-        double val=0.999;
+        double val=0.9;
         CalculMatriciel cR = new CalculMatriciel(mR, v, val);
         CalculMatriciel cG = new CalculMatriciel(mG, v, val);
         CalculMatriciel cB = new CalculMatriciel(mB, v, val);
-        //mR=(Matrice) cR.calcul_valeurpropre().clone();
-        //mG=(Matrice) cG.calcul_valeurpropre().clone();
-        //mB=(Matrice) cB.calcul_valeurpropre().clone();
         
-        creerImage(cR.calcul_valeurpropre(), cG.calcul_valeurpropre(), cB.calcul_valeurpropre());
+        
+        creerImage(cR.calcul_valeurpropre(), cG.calcul_valeurpropre(), cB.calcul_valeurpropre(), "test2");
         
         /*
         Matrice m=imag.toMatrice('M');
@@ -54,7 +52,7 @@ public class Test {
 
         
     }
-    
+    /*
         public Matrice multiplicate(Matrice m, Matrice m2){
         Matrice mReturn = new Matrice( m.getLigne(), m.getColonnes());
         double somme =0;
@@ -69,6 +67,7 @@ public class Test {
         }
         return mReturn;
     }
+    */
     public Matrice MatriceRandom(){
         Random rn = new Random();
         rn.setSeed(24);
@@ -85,7 +84,7 @@ public class Test {
     
     
     
-    public void creerImage(Matrice R,Matrice G,Matrice B){
+    public void creerImage(Matrice R,Matrice G,Matrice B,String str){
         
         try{
         
@@ -139,7 +138,7 @@ public class Test {
         }
             //System.out.println("COlor " + Color.RED.getRGB());
         //b.setRGB(0, 0, R.getLigne(), R.getColonnes(), pixels, 0, R.getLigne());
-        ImageIO.write(buff, "png", new File("test.png"));
+        ImageIO.write(buff, "jpg", new File(str+".jpg"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
