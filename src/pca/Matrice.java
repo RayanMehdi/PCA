@@ -23,11 +23,6 @@ public class Matrice implements Cloneable {
         this.lignes=Ligne;
         this.colonnes=Colonnes;
         matr = new double[lignes][colonnes];
-        /*for( int i = 0 ; i < lignes ; i++){
-            for( int j = 0 ; i < colonnes ; j++){
-                
-            }
-        }*/
     }
    
     

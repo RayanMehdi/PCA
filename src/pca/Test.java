@@ -153,7 +153,6 @@ public class Test {
         //TYPE_INT_RGB or TYPE_BYTE_GRAY
         BufferedImage buff = new BufferedImage(M.getLigne(), M.getColonnes(), BufferedImage.TYPE_INT_RGB);
         //int[] pixels = new int[R.getLigne() * R.getColonnes()];
-        int r, g, b, rgb;
         Color couleur;
         for(int x = 0; x < M.getLigne(); x++) {
             for(int y = 0; y < M.getColonnes(); y++) {

@@ -40,60 +40,30 @@ public class CalculMatriciel {
         tabEcartType = new ArrayList<>();
     }
 
-    /* commence l'algo
-     -prendre une matrice
-     -prendre un vecteur (commencé par 1...1)
-     -while |v1 - v2| > arret
-     -multiplié matrice avec vecteur
-     -v = v/norm(v) 
-     -retourné au while
-     */
-    //pour deflation dsds
-    /*
-     A faire : prendre la fonction deflation
-     utiliser la nouvelle matrice de deflation dans l'algo
-     pour la valeur de while, calculer la trace et utilisé une aray list composé
-     des valeurs propres. Si 90% de la somme de ces valeurs propres est atteinte 
-     (trace = 100% des valeurs propres)
-     */
     public Matrice calcul_valeurpropre() {//permet de calculer le vecteur propre et la valeur propre de la matrice
         Vecteur v2 = (Vecteur) v.clone();
-        int i = 0;
-        //m.aff_matrice();
+        
         centrer_reduire(m);
+        
         mdebase = (Matrice) m.clone();
         this.m = multiplicate(this.m, transposition(this.m));
         double trace = calcul_trace(this.m);
-        //System.out.println("trace : " + trace);
-        //m.aff_matrice();
+        
         while (sumTab() <= trace * pourcentageTrace) {
             calcul_plus_grand_vecteur_propre(v2);
             deflation();
-            i++;
-
         }
-        //System.out.println("Nombre vecteur = " + i);
-        //tabVectPropre.get(0).aff_vecteur();
+        
         this.mvp = cree_matrice_vect_propre();
-        //this.mvp = multiplicate(this.mvp,transposition(this.mvp));
         
-        //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
-        //this.mvp.aff_matrice();
         this.mvp = multiplicate(transposition(mvp), this.mvp);
-        //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
         
-        
-       // this.mvp = multiplicate(this.mdebase, this.mvp);
        this.mvp = multiplicate(this.mdebase, this.mvp);
-        //this.mvp.aff_matrice();
-        
-        //System.out.println("MATRICE 2 IMAGE");
+       
         matrice2image();
-        //System.out.println("MATRICE 3 IMAGE");
+        
         return this.mvp;
-        //this.mvp.aff_matrice();
-        //matrice2image(trace, trace);
-
+        
     }
 
     public Matrice getMvp() {
@@ -117,7 +87,6 @@ public class CalculMatriciel {
     public double calcul_trace(Matrice m) {
         double trace = 0;
         for (int i = 0; i < m.getColonnes(); i++) {
-            System.out.println(m.getElement(i, i));
             trace += m.getElement(i, i);
         }
         return trace;
@@ -176,7 +145,6 @@ public class CalculMatriciel {
     public Matrice multiplicate(Vecteur v) {
         Matrice m = new Matrice(v.getTaille(), v.getTaille());
         Vecteur test = new Vecteur(v.getTaille());
-        double value = 0;
         for (int i = 0; i < test.getTaille(); i++) {
             for (int j = 0; j < test.getTaille(); j++) {
                 m.setElement(i, j, v.getElement(i) * v.getElement(j));
@@ -193,7 +161,6 @@ public class CalculMatriciel {
             for (int k = 0; k < this.m.getColonnes(); k++) {
                 value += v.getElement(k) * m.getElement(i, k);
             }
-            //System.out.println("res="+value);
             test.setElement(i, value);
         }
         return test;
@@ -229,7 +196,6 @@ public class CalculMatriciel {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
-        //mvp.aff_matrice();
         return mvp;
     }
     
@@ -328,23 +294,7 @@ public class CalculMatriciel {
         }
 
     }
-
-    public double covariance(Vecteur v1, Vecteur v2) {
-        if (v1.getTaille() != v2.getTaille()) {
-            System.out.println("Probleme, la taille des deux vecteurs pour le calcul de covariance est différent.");
-            return 2;
-        } else {
-            double xm = moyenne(v1);
-            double ym = moyenne(v2);
-            double value1 = 0, value2 = 0;
-            for (int i = 0; i < v1.getTaille(); i++) {
-                value1 += v1.getElement(i) - xm;
-                value2 += v2.getElement(i) - ym;
-            }
-            return value1 * value2 * (1 / v1.getTaille());
-        }
-    }
-
+    
     public double moyenne(Vecteur v) {
         double m = 0;
         for (int i = 0; i < v.getTaille(); i++) {
@@ -354,44 +304,25 @@ public class CalculMatriciel {
     }
 
     public void calcul_plus_grand_vecteur_propre(Vecteur v2) {
-        int i = 0;
         double valeur_propre = 1, valeur_propre_2 = 0;
-        /*
-         System.out.println("Matrice : ");
-         m.aff_matrice();
-         System.out.println("vect base");*/
         vecteur_base = m.random();
 
-        //vecteur_base.aff_vecteur();
         v = (Vecteur) vecteur_base.clone();
         v.setElement(0, 40);
         v2 = (Vecteur) vecteur_base.clone();
         
-        // this.m*v - valeur_propre*v --> norme environ = à 0
-        
         do{
-        /*&& !vecteur_propre(v2)*/ 
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
-            //System.out.println("v2=");
-            //v2.aff_vecteur();
+            
             v = multiplicate(v2, this.m);// rpz le vecteur x dans l'algo
-            //System.out.println("new v=");
-            //v.aff_vecteur();
-            //System.out.println("vp_i="+valeur_propre);
+            
             valeur_propre_2 = produitScalaire(v, v2);
-            //System.out.println("vp_i+1="+valeur_propre_2);
-            //System.out.println("v2=");
-            //v2.aff_vecteur();
-            //System.out.println("v1 " + valeur_propre + " v2 " + valeur_propre_2);
+            
         }while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, valeur_propre_2), multiplicate(v2, this.m))) > 0.00000001);
-        /*System.out.println(" 1er multi ");multiplicate(v2, valeur_propre_2).aff_vecteur();
-        System.out.println(" 2éme multi ______");multiplicate(v2, this.m).aff_vecteur();*/
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
-        //System.out.println(vecteur_propre(v2));
-       // System.out.println("nb ite" + i);
-        // System.out.println(valeur_propre_2);
+        
 
     }
 
@@ -400,9 +331,8 @@ public class CalculMatriciel {
         for (int i = 0; i < v.getTaille(); i++) {
             val += v.getElement(i) * v.getElement(i);
         }
-        if (sqrt(val) == 1) {
+        if (sqrt(val) == 1)
             return true;
-        }
         return false;
     }
 
@@ -411,23 +341,14 @@ public class CalculMatriciel {
         for (int j = 0; j < this.m.getColonnes(); j++) {
             
                     for (int i = 0; i < this.mvp.getLigne(); i++) {
-                        //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
                         new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
 
-                        //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
                         this.mvp.setElement(i, j, new_value);
                     }
                
             
         }
-        //mvp.aff_matrice();
     }
-    
-    /*public void matrice2image() {
-        double new_value = 0;
-        centrer_reduire(this.mvp);
-        mvp.aff_matrice();
-    }*/
 
     public void remplir_zéro(Matrice m) {
         Matrice m_new = new Matrice(this.m.getColonnes(), this.m.getColonnes());
