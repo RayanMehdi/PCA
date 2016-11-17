@@ -5,6 +5,8 @@
  */
 package pca;
 
+import View.MainView;
+
 /**
  *
  * @author rayanmehdi1
@@ -16,6 +18,9 @@ public class PCA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MainView v = new MainView();
+        v.setVisible(true);
+        
         Test t = new Test();
         
         
