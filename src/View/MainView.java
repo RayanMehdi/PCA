@@ -171,11 +171,10 @@ public class MainView extends javax.swing.JFrame {
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         File file = jFileChooser1.getSelectedFile();
-        t=new Test(file.getName());
-        ImageIcon icon = new ImageIcon(t.getImag().getNomFichier());
+        t = new Test(file.getName());
+        ImageIcon icon = new ImageIcon(file.getPath());
         jLabel4.setIcon(icon);
         jLabel1.setIcon(icon);
-        
         
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
