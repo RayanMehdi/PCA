@@ -14,6 +14,7 @@ import java.io.FileFilter;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+import pca.Test;
 
 /**
  *
@@ -24,7 +25,10 @@ public class MainView extends javax.swing.JFrame {
     /**
      * Creates new form MainView
      */
+    private Test t;
+    
     public MainView() {
+       
         initComponents();
     }
 
@@ -74,9 +78,15 @@ public class MainView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
-        jFileChooser1.setApproveButtonText("");
+        jFileChooser1.setApproveButtonText("Valider");
         jFileChooser1.setApproveButtonToolTipText("");
+        jFileChooser1.setBackground(java.awt.Color.white);
         jFileChooser1.setFileFilter(new ImageFilter());
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -158,6 +168,16 @@ public class MainView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jFileChooser1.showOpenDialog(rootPane);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        File file = jFileChooser1.getSelectedFile();
+        t=new Test(file.getName());
+        ImageIcon icon = new ImageIcon(t.getImag().getNomFichier());
+        jLabel4.setIcon(icon);
+        jLabel1.setIcon(icon);
+        
+        
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     /**
      * @param args the command line arguments

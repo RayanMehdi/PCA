@@ -13,7 +13,13 @@ import java.util.Random;
  */
 public class Test {
 
-    Image imag;
+    private Image imag;
+
+    public Image getImag() {
+        return imag;
+    }
+    
+    
 
     public Test(String name_image){
         

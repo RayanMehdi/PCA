@@ -21,7 +21,7 @@ public class PCA {
         MainView v = new MainView();
         v.setVisible(true);
         
-        Test t = new Test();
+        //Test t = new Test();
         
         
     }

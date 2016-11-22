@@ -5,12 +5,18 @@
     <Component class="javax.swing.JFileChooser" name="jFileChooser1">
       <Properties>
         <Property name="acceptAllFileFilterUsed" type="boolean" value="false"/>
-        <Property name="approveButtonText" type="java.lang.String" value=""/>
+        <Property name="approveButtonText" type="java.lang.String" value="Valider"/>
         <Property name="approveButtonToolTipText" type="java.lang.String" value=""/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
+        </Property>
         <Property name="fileFilter" type="javax.swing.filechooser.FileFilter" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new ImageFilter()" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFileChooser1ActionPerformed"/>
+      </Events>
     </Component>
   </NonVisualComponents>
   <Properties>
