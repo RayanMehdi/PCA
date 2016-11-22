@@ -13,45 +13,29 @@ import java.util.Random;
  */
 public class Test {
 
-    Image imag = new Image("test1.png");
+    Image imag;
 
-    public Test(){
+    public Test(String name_image){
         
-        Matrice m1 = new Matrice(3, 3);
-        for( int i = 0; i < m1.getColonnes(); i++ ){
-               for( int j = 0; j < m1.getLigne(); j++ ){
-                   m1.setElement(j, i, 2);
-               }
-        }
-        Matrice m2 = new Matrice(3, 3);
+        this.imag = new Image(name_image);
         
-        m2.setElement(0, 0, 1);
-        m2.setElement(1, 0, 4);
-        m2.setElement(0, 1, 4);
-        m2.setElement(2, 0, 5);
-        m2.setElement(0, 2, 5);
-        m2.setElement(1, 2, 6);
-        m2.setElement(2, 1, 6);
-        m2.setElement(1, 1, 2);
-        m2.setElement(2, 2, 3);
         
-        m1 = multiplicate(m1,m2);
-        
-        Matrice m=imag.MatriceNoirBlanc();
-        
-        Vecteur v = new Vecteur(m.getLigne());
-       // v = m.random();
-                
-
-        CalculMatriciel c = new CalculMatriciel(m, v, 0.5);
-        c.calcul_valeurpropre();
-        //c.affTab();
         //c.getMvp().creerImage();
         
         //v.aff_vecteur();
 
        // v.aff_vecteur();
 
+        
+    }
+    
+    public void init(float pourcentage_compression){
+        Matrice m=imag.MatriceNoirBlanc();
+        
+        Vecteur v = new Vecteur(m.getLigne());
+        
+        CalculMatriciel c = new CalculMatriciel(m, v, pourcentage_compression);
+        c.calcul_valeurpropre();
         
     }
     
