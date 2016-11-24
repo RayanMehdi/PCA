@@ -217,15 +217,23 @@ public class CalculMatriciel {
 
     public Matrice cree_matrice_vect_propre() {
         Matrice mvp;
-        if(mdebase.getLigne() < mdebase.getColonnes())
+        int plus_petit = 0;
+        if(mdebase.getLigne() < mdebase.getColonnes()){
              mvp = new Matrice(mdebase.getColonnes(), mdebase.getColonnes());
+             plus_petit = mdebase.getLigne();
+        }
+        else{
+            mvp = new Matrice(mdebase.getLigne(), mdebase.getLigne());
+            plus_petit = mdebase.getColonnes();
+        }
         for (int j = 0; j < mvp.getColonnes(); j++) {
             for (int k = 0; k < mvp.getLigne(); k++) {
                 mvp.setElement(k, j, 0);
             }
         }
         
-        for (int j = 0; j < mvp.getLigne(); j++) {
+        
+        for (int j = 0; j < plus_petit; j++) {
             for (int k = 0; k < tabVectPropre.size(); k++) {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
