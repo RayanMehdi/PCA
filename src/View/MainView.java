@@ -107,6 +107,11 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(jButton1, gridBagConstraints);
 
         jButton2.setText("Valider");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
@@ -177,6 +182,11 @@ public class MainView extends javax.swing.JFrame {
         ImageIcon imageIcon = new ImageIcon(icon.getImage().getScaledInstance(170, 170, Image.SCALE_DEFAULT));
         jLabel4.setIcon(imageIcon);
     }//GEN-LAST:event_jFileChooser1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       t.init((float)this.jSpinner1.getValue()/100);
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
