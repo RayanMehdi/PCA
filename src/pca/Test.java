@@ -41,12 +41,17 @@ public class Test {
     }
     
     public void init(float pourcentage_compression){
-        Matrice m=imag.MatriceNoirBlanc();
         
-        Vecteur v = new Vecteur(m.getLigne());
+        Matrice mR=imag.toMatrice('R');
+        Matrice mG=imag.toMatrice('G');
+        Matrice mB=imag.toMatrice('B');
+        Vecteur v = new Vecteur(mR.getLigne());
+
+        CalculMatriciel cR = new CalculMatriciel(mR, v, pourcentage_compression);
+        CalculMatriciel cG = new CalculMatriciel(mG, v, pourcentage_compression);
+        CalculMatriciel cB = new CalculMatriciel(mB, v, pourcentage_compression);
         
-        CalculMatriciel c = new CalculMatriciel(m, v, pourcentage_compression);
-        c.calcul_valeurpropre();
+        creerImage(cR.calcul_valeurpropre(), cG.calcul_valeurpropre(), cB.calcul_valeurpropre());
         
     }
     
