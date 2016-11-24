@@ -90,6 +90,11 @@ public class CalculMatriciel {
         //System.out.println("MATRICE 2 IMAGE");
         matrice2image();
         //System.out.println("MATRICE 3 IMAGE");
+        
+        rogner_image();
+        System.out.println(" li gne " + mvp.getLigne() + " Colone " + mvp.getColonnes());        
+        
+        
         return this.mvp;
         //this.mvp.aff_matrice();
         //matrice2image(trace, trace);
@@ -238,8 +243,19 @@ public class CalculMatriciel {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
+     
         //mvp.aff_matrice();
         return mvp;
+    }
+    
+    public void rogner_image(){
+        Matrice mt = new Matrice(mdebase.getLigne(), mdebase.getColonnes());
+        for (int i = 0; i < mdebase.getLigne(); i++) {
+            for (int j = 0; j < mdebase.getColonnes(); j++) {
+                mt.setElement(i, j, mvp.getElement(i, j));
+            }
+        }
+        mvp = mt;
     }
     
     public double norme_vecteur(Vecteur v){
