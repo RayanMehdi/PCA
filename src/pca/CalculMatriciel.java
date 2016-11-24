@@ -200,7 +200,7 @@ public class CalculMatriciel {
     }
 
     public Matrice multiplicate(Matrice m, Matrice m2) {
-        Matrice mReturn = new Matrice(m.getLigne(), m.getColonnes());
+        Matrice mReturn = new Matrice(m.getLigne(), m2.getColonnes());
         for (int i = 0; i < m.getLigne(); i++) {
             for (int j = 0; j < m2.getColonnes(); j++) {
                 for (int k = 0; k < m.getColonnes(); k++) {
@@ -216,15 +216,16 @@ public class CalculMatriciel {
     }
 
     public Matrice cree_matrice_vect_propre() {
-        Matrice mvp = new Matrice(mdebase.getLigne(), mdebase.getColonnes());
+        Matrice mvp;
+        if(mdebase.getLigne() < mdebase.getColonnes())
+             mvp = new Matrice(mdebase.getColonnes(), mdebase.getColonnes());
         for (int j = 0; j < mvp.getColonnes(); j++) {
             for (int k = 0; k < mvp.getLigne(); k++) {
                 mvp.setElement(k, j, 0);
             }
         }
         
-        
-        for (int j = 0; j < mvp.getColonnes(); j++) {
+        for (int j = 0; j < mvp.getLigne(); j++) {
             for (int k = 0; k < tabVectPropre.size(); k++) {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
@@ -265,9 +266,9 @@ public class CalculMatriciel {
     public Matrice transposition(Matrice m) {
         int ligne = m.getLigne();
         int colonnes = m.getColonnes();
-        Matrice transpose = new Matrice(ligne, colonnes);
-        for (int i = 0; i < ligne; i++) {
-            for (int j = 0; j < colonnes; j++) {
+        Matrice transpose = new Matrice(colonnes, ligne);
+        for (int i = 0; i < transpose.getLigne(); i++) {
+            for (int j = 0; j < transpose.getColonnes(); j++) {
                 transpose.setElement(i, j, m.getElement(j, i));
             }
         }

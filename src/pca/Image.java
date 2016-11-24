@@ -37,14 +37,17 @@ public class Image {
          
         int largeurImage = image.getWidth();
         int hauteurImage = image.getHeight();
-            System.out.println(image.getHeight());
+        
+            System.out.println(largeurImage + " " + hauteurImage);
+        
         matrix=new Matrice(largeurImage,hauteurImage);
         
         
         Color couleur;
-        for(int colonne = 0; colonne < largeurImage; colonne++){
-            for(int ligne = 0; ligne < hauteurImage; ligne++){
-                
+        for(int ligne = 0; ligne < largeurImage; ligne++){
+            System.out.println(ligne + " alors que " + largeurImage);
+            for(int colonne = 0; colonne < hauteurImage; colonne++){
+                //System.out.println(" Ligne : " + ligne + " et col : " + colonne);
                 couleur = new Color(image.getRGB(ligne, colonne), false);
                 // Traitement ici
                 //System.out.print(image.getRGB(ligne, colonne)+" | ");
