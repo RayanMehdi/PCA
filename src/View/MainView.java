@@ -93,7 +93,7 @@ public class MainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Parcourrir..");
+        jButton1.setText("Parcourir..");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -185,7 +185,8 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       t.init((float)this.jSpinner1.getValue()/100);
+       t.init((int) this.jSpinner1.getValue());
+        System.out.println("je suis dans la fonction");
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
