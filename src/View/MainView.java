@@ -46,7 +46,8 @@ public class MainView extends javax.swing.JFrame {
 
             if (i > 0 && i < s.length() - 1) {
                 ext = s.substring(i + 1).toLowerCase();
-            }
+            }else
+                ext = "";
             return ext.equals("jpg") || ext.equals("png") || ext.equals("jpeg") || ext.equals("gif") || ext.equals("tiff") || ext.equals("tif");
         }
 
