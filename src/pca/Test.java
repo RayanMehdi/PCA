@@ -18,40 +18,35 @@ import javax.imageio.ImageIO;
  */
 public class Test {
 
-    //test10.png pour une image 10x10
-    Image imag = new Image("sans.png");
+    private Image imag;
 
-    public Test(){
+    public Image getImag() {
+        return imag;
+    }
+    
+    
+
+    public Test(String name_image){
         
-       
-        Matrice mR=imag.toMatrice('R');
-        Matrice mG=imag.toMatrice('G');
-        Matrice mB=imag.toMatrice('B');
-        Vecteur v = new Vecteur(mR.getLigne());
+        this.imag = new Image(name_image);
         
-       // v = m.random();
-                
-        double val=0.999;
-        CalculMatriciel cR = new CalculMatriciel(mR, v, val);
-        CalculMatriciel cG = new CalculMatriciel(mG, v, val);
-        CalculMatriciel cB = new CalculMatriciel(mB, v, val);
-        //mR=(Matrice) cR.calcul_valeurpropre().clone();
-        //mG=(Matrice) cG.calcul_valeurpropre().clone();
-        //mB=(Matrice) cB.calcul_valeurpropre().clone();
         
-        creerImage(cR.calcul_valeurpropre(), cG.calcul_valeurpropre(), cB.calcul_valeurpropre());
-        
-        /*
-        Matrice m=imag.toMatrice('M');
-        creerImage(m);*/
-        
-        //c.affTab();
         //c.getMvp().creerImage();
         
         //v.aff_vecteur();
 
        // v.aff_vecteur();
 
+        
+    }
+    
+    public void init(float pourcentage_compression){
+        Matrice m=imag.MatriceNoirBlanc();
+        
+        Vecteur v = new Vecteur(m.getLigne());
+        
+        CalculMatriciel c = new CalculMatriciel(m, v, pourcentage_compression);
+        c.calcul_valeurpropre();
         
     }
     

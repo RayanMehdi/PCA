@@ -19,6 +19,12 @@ import javax.imageio.ImageIO;
 public class Image {
     private String nomFichier;
     private Matrice matrix;
+
+    public String getNomFichier() {
+        return nomFichier;
+    }
+    
+    
     
     public Image(String nom){
         this.nomFichier=nom;

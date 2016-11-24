@@ -369,8 +369,8 @@ public class CalculMatriciel {
         
         // this.m*v - valeur_propre*v --> norme environ = à 0
         
-        do{
-        /*&& !vecteur_propre(v2)*/ 
+        System.out.println();
+        while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, this.m), multiplicate(v2, valeur_propre))) > 0.00000001)/*&& !vecteur_propre(v2)*/ {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
             //System.out.println("v2=");
