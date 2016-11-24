@@ -32,11 +32,12 @@ public class Image {
     
     public Matrice toMatrice(char c){
         try {
+            System.out.println(this.nomFichier);
         BufferedImage image = ImageIO.read(new File(this.nomFichier));
          
         int largeurImage = image.getWidth();
         int hauteurImage = image.getHeight();
-         
+            System.out.println(image.getHeight());
         matrix=new Matrice(largeurImage,hauteurImage);
         
         

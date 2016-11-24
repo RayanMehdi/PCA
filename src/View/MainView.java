@@ -178,7 +178,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         File file = jFileChooser1.getSelectedFile();
-        t = new Test(file.getName());
+        t = new Test(file.getPath());
         ImageIcon icon = new ImageIcon(file.getPath());
         ImageIcon imageIcon = new ImageIcon(icon.getImage().getScaledInstance(170, 170, Image.SCALE_DEFAULT));
         jLabel4.setIcon(imageIcon);
@@ -186,7 +186,9 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        t.init((int) this.jSpinner1.getValue());
-        System.out.println("je suis dans la fonction");
+       ImageIcon icon = new ImageIcon("test.png");
+       ImageIcon imageIcon = new ImageIcon(icon.getImage().getScaledInstance(170, 170, Image.SCALE_DEFAULT));
+       jLabel5.setIcon(imageIcon);
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
