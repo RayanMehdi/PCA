@@ -22,6 +22,7 @@ public class Test {
     private Image imag;
     private String name_image;
     String extension;
+    String extension_without_dot;
 
     public Image getImag() {
         return imag;
@@ -32,7 +33,7 @@ public class Test {
     public Test(String name_image){
         String[] s = name_image.split(Pattern.quote("."));
         this.name_image = s[0];
-        
+        extension_without_dot = s[1];
         extension = "." + s[1];
         
         this.imag = new Image(this.name_image + extension);
@@ -132,7 +133,7 @@ public class Test {
             }
         }
             System.out.println(this.name_image);
-        ImageIO.write(buff, "png", new File(this.name_image + "_compressed" + extension));
+        ImageIO.write(buff, extension_without_dot, new File(this.name_image + "_compressed" + extension));
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
@@ -181,7 +182,7 @@ public class Test {
         }
             //System.out.println("COlor " + Color.RED.getRGB());
         //b.setRGB(0, 0, R.getLigne(), R.getColonnes(), pixels, 0, R.getLigne());
-        ImageIO.write(buff, "png", new File(name_image + "_compressed" + extension));
+        ImageIO.write(buff, extension_without_dot, new File(name_image + "_compressed" + extension));
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
@@ -191,5 +192,9 @@ public class Test {
     
     public String getNameImage(){
         return name_image;
+    }
+    
+    public String getExtension(){
+        return extension;
     }
 }
