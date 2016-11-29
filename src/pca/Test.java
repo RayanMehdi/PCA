@@ -116,21 +116,7 @@ public class Test {
                 if (B.getElement(x, y) > 255) {
                     B.setElement(x, y,255);
                 }
-                //this.matr[x][y] = this.matr[x][y]%255;
-                //System.out.println("Rouge :"+R.getElement(x, y));
-                //System.out.println("vert :"+G.getElement(x, y));
-                //System.out.println("bleu :"+B.getElement(x, y));
                 
-                //pixels[y*R.getColonnes() + x] = new Color((int) R.getElement(x, y),(int) G.getElement(x, y),(int) B.getElement(x, y)).getRGB();
-                
-                /*
-                    Color col = new Color((float)this.matr[x][y], (float)this.matr[x][y] , (float)this.matr[x][y]);
-                    //Color col = new Color((int)this.matr[x][y]);
-                    int rgb = col.getRGB();
-                    System.out.println(rgb);
-                    
-                    //int rgb = (int)this.matr[x][y];
-                    b.setRGB(y, x, rgb);*/
                 r=(int) R.getElement(x, y);
                 g=(int) G.getElement(x, y);
                 b=(int) B.getElement(x, y);
@@ -138,8 +124,6 @@ public class Test {
                 buff.setRGB(x, y, rgb);    
             }
         }
-            //System.out.println("COlor " + Color.RED.getRGB());
-        //b.setRGB(0, 0, R.getLigne(), R.getColonnes(), pixels, 0, R.getLigne());
         ImageIO.write(buff, "png", new File("test.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());

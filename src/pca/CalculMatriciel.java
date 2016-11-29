@@ -243,7 +243,7 @@ public class CalculMatriciel {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
-     
+        System.out.println("Ligne : " + mvp.getLigne() + " Col " + mvp.getColonnes());
         //mvp.aff_matrice();
         return mvp;
     }
@@ -256,6 +256,8 @@ public class CalculMatriciel {
             }
         }
         mvp = mt;
+        mvp.setColonnes(mdebase.getColonnes());
+        mvp.setLigne(mdebase.getLigne());
     }
     
     public double norme_vecteur(Vecteur v){
@@ -433,7 +435,8 @@ public class CalculMatriciel {
 
     public void matrice2image() {
         double new_value = 0;
-        for (int j = 0; j < this.m.getColonnes(); j++) {
+        
+        for (int j = 0; j < this.mdebase.getColonnes(); j++) {
             
                     for (int i = 0; i < this.mvp.getLigne(); i++) {
                         //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
