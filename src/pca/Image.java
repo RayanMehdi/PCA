@@ -45,7 +45,6 @@ public class Image {
         
         Color couleur;
         for(int ligne = 0; ligne < largeurImage; ligne++){
-            System.out.println(ligne + " alors que " + largeurImage);
             for(int colonne = 0; colonne < hauteurImage; colonne++){
                 //System.out.println(" Ligne : " + ligne + " et col : " + colonne);
                 couleur = new Color(image.getRGB(ligne, colonne), false);
