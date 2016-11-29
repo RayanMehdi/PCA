@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 
 /**
@@ -19,6 +20,8 @@ import javax.imageio.ImageIO;
 public class Test {
 
     private Image imag;
+    private String name_image;
+    String extension;
 
     public Image getImag() {
         return imag;
@@ -27,8 +30,14 @@ public class Test {
     
 
     public Test(String name_image){
+        String[] s = name_image.split(Pattern.quote("."));
+        name_image = s[0];
         
-        this.imag = new Image(name_image);
+        
+        System.out.println(name_image);System.out.println(name_image);System.out.println(name_image);System.out.println(name_image);System.out.println(name_image);
+        extension = "." + s[1];
+        
+        this.imag = new Image(name_image + extension);
         
         
         //c.getMvp().creerImage();
@@ -124,7 +133,8 @@ public class Test {
                 buff.setRGB(x, y, rgb);    
             }
         }
-        ImageIO.write(buff, "png", new File("test.png"));
+            System.out.println(name_image);
+        ImageIO.write(buff, "png", new File(name_image + "_compressed" + extension));
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
@@ -173,11 +183,15 @@ public class Test {
         }
             //System.out.println("COlor " + Color.RED.getRGB());
         //b.setRGB(0, 0, R.getLigne(), R.getColonnes(), pixels, 0, R.getLigne());
-        ImageIO.write(buff, "png", new File("test.png"));
+        ImageIO.write(buff, "png", new File(name_image + "_compressed" + extension));
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
        
         
+    }
+    
+    public String getNameImage(){
+        return name_image;
     }
 }

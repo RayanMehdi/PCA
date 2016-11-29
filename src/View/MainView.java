@@ -186,7 +186,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        t.init((int) this.jSpinner1.getValue());
-       ImageIcon icon = new ImageIcon("test.png");
+       ImageIcon icon = new ImageIcon(t.getNameImage()+ "_compressed");
        ImageIcon imageIcon = new ImageIcon(icon.getImage().getScaledInstance(170, 170, Image.SCALE_DEFAULT));
        jLabel5.setIcon(imageIcon);
        
