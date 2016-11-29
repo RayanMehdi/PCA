@@ -92,7 +92,7 @@ public class CalculMatriciel {
         //System.out.println("MATRICE 3 IMAGE");
         
         rogner_image();
-        System.out.println(" li gne " + mvp.getLigne() + " Colone " + mvp.getColonnes());        
+        //System.out.println(" li gne " + mvp.getLigne() + " Colone " + mvp.getColonnes());        
         
         
         return this.mvp;
@@ -122,7 +122,7 @@ public class CalculMatriciel {
     public double calcul_trace(Matrice m) {
         double trace = 0;
         for (int i = 0; i < m.getColonnes(); i++) {
-            System.out.println(m.getElement(i, i));
+            //System.out.println(m.getElement(i, i));
             trace += m.getElement(i, i);
         }
         return trace;
@@ -243,7 +243,7 @@ public class CalculMatriciel {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
             }
         }
-        System.out.println("Ligne : " + mvp.getLigne() + " Col " + mvp.getColonnes());
+        //System.out.println("Ligne : " + mvp.getLigne() + " Col " + mvp.getColonnes());
         //mvp.aff_matrice();
         return mvp;
     }
@@ -396,7 +396,6 @@ public class CalculMatriciel {
         
         // this.m*v - valeur_propre*v --> norme environ = à 0
         
-        System.out.println();
         while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, this.m), multiplicate(v2, valeur_propre))) > 0.00000001)/*&& !vecteur_propre(v2)*/ {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
