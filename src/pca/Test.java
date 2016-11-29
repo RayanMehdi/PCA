@@ -31,13 +31,11 @@ public class Test {
 
     public Test(String name_image){
         String[] s = name_image.split(Pattern.quote("."));
-        name_image = s[0];
+        this.name_image = s[0];
         
-        
-        System.out.println(name_image);System.out.println(name_image);System.out.println(name_image);System.out.println(name_image);System.out.println(name_image);
         extension = "." + s[1];
         
-        this.imag = new Image(name_image + extension);
+        this.imag = new Image(this.name_image + extension);
         
         
         //c.getMvp().creerImage();
@@ -133,8 +131,8 @@ public class Test {
                 buff.setRGB(x, y, rgb);    
             }
         }
-            System.out.println(name_image);
-        ImageIO.write(buff, "png", new File(name_image + "_compressed" + extension));
+            System.out.println(this.name_image);
+        ImageIO.write(buff, "png", new File(this.name_image + "_compressed" + extension));
         } catch (IOException e) {
             System.out.println(e.getMessage());
 	}
