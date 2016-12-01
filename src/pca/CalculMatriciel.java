@@ -410,7 +410,7 @@ public class CalculMatriciel {
             //System.out.println("v2=");
             //v2.aff_vecteur();
             //System.out.println("v1 " + valeur_propre + " v2 " + valeur_propre_2);
-        }while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, valeur_propre_2), multiplicate(v2, this.m))) > 0.00000001);
+        }
         /*System.out.println(" 1er multi ");multiplicate(v2, valeur_propre_2).aff_vecteur();
         System.out.println(" 2éme multi ______");multiplicate(v2, this.m).aff_vecteur();*/
         tabValPropre.add(valeur_propre_2);
