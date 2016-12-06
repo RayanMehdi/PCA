@@ -59,7 +59,9 @@ public class Test {
         CalculMatriciel cR = new CalculMatriciel(mR, v, PC);
         CalculMatriciel cG = new CalculMatriciel(mG, v, PC);
         CalculMatriciel cB = new CalculMatriciel(mB, v, PC);
-        
+        if(PC == 1)
+            creerImage(mR, mG, mB);
+        else
         creerImage(cR.calcul_valeurpropre(), cG.calcul_valeurpropre(), cB.calcul_valeurpropre());
         
     }
