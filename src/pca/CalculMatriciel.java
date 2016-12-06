@@ -62,7 +62,7 @@ public class CalculMatriciel {
         //m.aff_matrice();
         centrer_reduire(m);
         mdebase = (Matrice) m.clone();
-        this.m = multiplicate(this.m, transposition(this.m));
+        this.m = multiplicate(transposition(this.m), this.m);
         double trace = calcul_trace(this.m);
         //System.out.println("trace : " + trace);
         //m.aff_matrice();
@@ -76,25 +76,23 @@ public class CalculMatriciel {
         //tabVectPropre.get(0).aff_vecteur();
         this.mvp = cree_matrice_vect_propre();
         //this.mvp = multiplicate(this.mvp,transposition(this.mvp));
-        
+
         //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
         //this.mvp.aff_matrice();
         this.mvp = multiplicate(transposition(mvp), this.mvp);
         //System.out.println("MATRICE VECTEUR PROPRE x TRANSPO :");
-        
-        
-       // this.mvp = multiplicate(this.mdebase, this.mvp);
-       this.mvp = multiplicate(this.mdebase, this.mvp);
+
+        // this.mvp = multiplicate(this.mdebase, this.mvp);
+        this.mvp = multiplicate(this.mdebase, this.mvp);
         //this.mvp.aff_matrice();
-        
+
         //System.out.println("MATRICE 2 IMAGE");
         matrice2image();
         //System.out.println("MATRICE 3 IMAGE");
-        
+
         rogner_image();
         //System.out.println(" li gne " + mvp.getLigne() + " Colone " + mvp.getColonnes());        
-        
-        
+
         return this.mvp;
         //this.mvp.aff_matrice();
         //matrice2image(trace, trace);
@@ -137,12 +135,12 @@ public class CalculMatriciel {
         }
         return z;
     }
-    
-    public Vecteur sub(Vecteur v, Vecteur v2){
+
+    public Vecteur sub(Vecteur v, Vecteur v2) {
         Vecteur v_r = new Vecteur(v.getTaille());
-        if( v.getTaille() != v2.getTaille())
+        if (v.getTaille() != v2.getTaille()) {
             return null;
-        else{
+        } else {
             for (int i = 0; i < v.getTaille(); i++) {
                 v_r.setElement(i, v.getElement(i) - v2.getElement(i));
             }
@@ -159,8 +157,8 @@ public class CalculMatriciel {
         }
         return z;
     }
-    
-    public Vecteur multiplicate( Vecteur v, double val){
+
+    public Vecteur multiplicate(Vecteur v, double val) {
         Vecteur v_r = new Vecteur(v.getTaille());
         for (int i = 0; i < v.getTaille(); i++) {
             v_r.setElement(i, val * v.getElement(i));
@@ -223,11 +221,10 @@ public class CalculMatriciel {
     public Matrice cree_matrice_vect_propre() {
         Matrice mvp;
         int plus_petit = 0;
-        if(mdebase.getLigne() < mdebase.getColonnes()){
-             mvp = new Matrice(mdebase.getColonnes(), mdebase.getColonnes());
-             plus_petit = mdebase.getLigne();
-        }
-        else{
+        if (mdebase.getLigne() < mdebase.getColonnes()) {
+            mvp = new Matrice(mdebase.getColonnes(), mdebase.getColonnes());
+            plus_petit = mdebase.getLigne();
+        } else {
             mvp = new Matrice(mdebase.getLigne(), mdebase.getLigne());
             plus_petit = mdebase.getColonnes();
         }
@@ -236,8 +233,7 @@ public class CalculMatriciel {
                 mvp.setElement(k, j, 0);
             }
         }
-        
-        
+
         for (int j = 0; j < plus_petit; j++) {
             for (int k = 0; k < tabVectPropre.size(); k++) {
                 mvp.setElement(k, j, tabVectPropre.get(k).getElement(j));
@@ -247,8 +243,8 @@ public class CalculMatriciel {
         //mvp.aff_matrice();
         return mvp;
     }
-    
-    public void rogner_image(){
+
+    public void rogner_image() {
         Matrice mt = new Matrice(mdebase.getLigne(), mdebase.getColonnes());
         for (int i = 0; i < mdebase.getLigne(); i++) {
             for (int j = 0; j < mdebase.getColonnes(); j++) {
@@ -259,8 +255,8 @@ public class CalculMatriciel {
         mvp.setColonnes(mdebase.getColonnes());
         mvp.setLigne(mdebase.getLigne());
     }
-    
-    public double norme_vecteur(Vecteur v){
+
+    public double norme_vecteur(Vecteur v) {
         double norme = 0;
         for (int i = 0; i < v.getTaille(); i++) {
             norme += v.getElement(i) * v.getElement(i);
@@ -393,9 +389,8 @@ public class CalculMatriciel {
         v = (Vecteur) vecteur_base.clone();
         v.setElement(0, 40);
         v2 = (Vecteur) vecteur_base.clone();
-        
+
         // this.m*v - valeur_propre*v --> norme environ = à 0
-        
         while (Math.abs(valeur_propre_2 - valeur_propre) > 0.00000001 && norme_vecteur(sub(multiplicate(v2, this.m), multiplicate(v2, valeur_propre))) > 0.00000001)/*&& !vecteur_propre(v2)*/ {
             valeur_propre = valeur_propre_2;
             v2 = normalise(v); //rpz le vecteur B dans lalgo
@@ -416,7 +411,7 @@ public class CalculMatriciel {
         tabValPropre.add(valeur_propre_2);
         tabVectPropre.add(v2);
         //System.out.println(vecteur_propre(v2));
-       // System.out.println("nb ite" + i);
+        // System.out.println("nb ite" + i);
         // System.out.println(valeur_propre_2);
 
     }
@@ -434,28 +429,26 @@ public class CalculMatriciel {
 
     public void matrice2image() {
         double new_value = 0;
-        
-        for (int j = 0; j < this.mdebase.getColonnes(); j++) {
-            
-                    for (int i = 0; i < this.mvp.getLigne(); i++) {
-                        //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
-                        new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
 
-                        //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
-                        this.mvp.setElement(i, j, new_value);
-                    }
-               
-            
+        for (int j = 0; j < this.mdebase.getColonnes(); j++) {
+
+            for (int i = 0; i < this.mvp.getLigne(); i++) {
+                //new_value = (this.mvp.getElement(i, j) + tabMoyenne.get(j)) * tabEcartType.get(j);
+                new_value = (this.mvp.getElement(i, j) * tabEcartType.get(j)) + tabMoyenne.get(j);
+
+                //System.out.println(" Value Ma : " + this.mvp.getElement(i, j) + " Moyenne : " + tabMoyenne.get(j) + " Ecart Type : " +tabEcartType.get(j) + "Result :" + new_value);
+                this.mvp.setElement(i, j, new_value);
+            }
+
         }
         //mvp.aff_matrice();
     }
-    
+
     /*public void matrice2image() {
         double new_value = 0;
         centrer_reduire(this.mvp);
         mvp.aff_matrice();
     }*/
-
     public void remplir_zéro(Matrice m) {
         Matrice m_new = new Matrice(this.m.getColonnes(), this.m.getColonnes());
         for (int i = 0; i < this.m.getColonnes(); i++) {
